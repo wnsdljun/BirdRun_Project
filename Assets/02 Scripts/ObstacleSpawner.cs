@@ -5,11 +5,12 @@ using UnityEngine;
 public class ObstacleSpawner : MonoBehaviour
 {
     public GameObject[] obstaclesList;  //장애물리스트
+    public GameObject itemObstacle;
 
     public GameObject ground;
     public Transform lastObstacle;
 
-    public ItemSpawner itemSpawner;
+    private ItemSpawner itemSpawner;
 
     private int groundCnt = 0;
     private bool isObstacle = false;
@@ -27,11 +28,11 @@ public class ObstacleSpawner : MonoBehaviour
 
     void Update()
     {
-        cam.transform.position += Vector3.right * 4f * Time.deltaTime;    //테스트용 카메라
+        cam.transform.position += Vector3.right * 10f * Time.deltaTime;    //테스트용 카메라
 
         //생성된 Obstacle이 20개 이하일 때만 추가로 생성
-        if (transform.childCount < 20)
-        {
+        //if (transform.childCount < 20)
+        //{
             if (!isObstacle && Random.value > 0.5f) // 50% 확률로 장애물 생성
             {
                 SpawnObstacle();
@@ -40,11 +41,9 @@ public class ObstacleSpawner : MonoBehaviour
             {
                 SpawnGround();
             }
-
             itemSpawner = lastObstacle.GetComponent<ItemSpawner>();
-
             itemSpawner.SpawnItem();
-        }
+        //}
     }
 
     //바닥 생성
@@ -65,10 +64,18 @@ public class ObstacleSpawner : MonoBehaviour
     {
         if (groundCnt < 2) return;
 
+        GameObject newObstacle;
+
         Vector3 newPosition = lastObstacle.position + new Vector3(3f, 0, 0);
 
-        int randomIdx = Random.Range(0, obstaclesList.Length);
-        GameObject newObstacle = Instantiate(obstaclesList[randomIdx], newPosition, Quaternion.identity);
+        if (Random.value < 0.1f)
+            newObstacle = Instantiate(itemObstacle, newPosition, Quaternion.identity);
+        else
+        {
+            int randomIdx = Random.Range(0, obstaclesList.Length);
+            newObstacle = Instantiate(obstaclesList[randomIdx], newPosition, Quaternion.identity);
+        }
+
         newObstacle.transform.SetParent(transform);
         lastObstacle = newObstacle.transform;
 

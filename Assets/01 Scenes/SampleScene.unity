@@ -593,10 +593,9 @@ MonoBehaviour:
   - {fileID: 3897899960439132297, guid: c619705a23490d042944dc0d049d42d5, type: 3}
   - {fileID: 8438924222719913175, guid: 0823b83b46e759948aaa48248f7a41e7, type: 3}
   - {fileID: 5050347730431067364, guid: b2524546021bab044887d1f3a56f0199, type: 3}
+  itemObstacle: {fileID: 5050347730431067364, guid: a780b8a149ce05549b13665240bee07b, type: 3}
   ground: {fileID: 7592864388716628190, guid: 2db714a4879f1614993c77e4e4c63d45, type: 3}
   lastObstacle: {fileID: 1233915694}
-  curObjstacle: {fileID: 972680384}
-  itemSpawner: {fileID: 0}
 --- !u!1001 &1194978333
 PrefabInstance:
   m_ObjectHideFlags: 0

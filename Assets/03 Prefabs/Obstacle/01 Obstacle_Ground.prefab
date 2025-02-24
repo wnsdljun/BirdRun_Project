@@ -170,9 +170,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2933317746820255102}
-  - component: {fileID: 3654340430917887436}
+  - component: {fileID: 3715392023340261014}
   m_Layer: 0
-  m_Name: Obstacle_Ground
+  m_Name: 01 Obstacle_Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -196,7 +196,7 @@ Transform:
   - {fileID: 1420826689742145309}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3654340430917887436
+--- !u!114 &3715392023340261014
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -205,20 +205,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 7592864388716628190}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 43d5a9297615b2e459b8149415fed06b, type: 3}
+  m_Script: {fileID: 11500000, guid: db520f0469ba9814c8ec86cad9573ae7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  seedItemList:
+  itemPoint: []
+  itemList:
   - {fileID: 4570960697643989750, guid: f3f3bace8875ac5458e62722df8967de, type: 3}
   - {fileID: 4181465759050757426, guid: 0830cfce1c7104e46a1c2c2dc2adde5b, type: 3}
-  itemList:
-  - {fileID: 1338819871950912818, guid: 6ec9a84784e14b047a4485394f9ccebf, type: 3}
-  - {fileID: 4253762692725945257, guid: 5489da15a41773e4aaf85117b9381072, type: 3}
-  - {fileID: 9148502346535221416, guid: f6e528602ebbe6443a88553eb443ce9e, type: 3}
-  itemPoint: []
+  - {fileID: 4570960697643989750, guid: 28a957a5b84e95a46b06282df41bd8f3, type: 3}
   sunSeedChance: 0.7
   rainbowSeedChance: 0.2
-  otherItemChance: 0.1
+  FruitChance: 0.1
 --- !u!1 &8761684651356016636
 GameObject:
   m_ObjectHideFlags: 0
