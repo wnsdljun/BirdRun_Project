@@ -8,28 +8,29 @@ public class ObstacleSpawner : MonoBehaviour
 
     public GameObject ground;
     public Transform lastObstacle;
-    public GameObject curObjstacle;
+
+    public ItemSpawner itemSpawner;
 
     private int groundCnt = 0;
     private bool isObstacle = false;
 
-    //Camera cam;   //테스트용 카메라
+    Camera cam;   //테스트용 카메라
 
     private void Awake()
     {
-        Obstacle[] curObjstacle = GameObject.FindObjectsOfType<Obstacle>();
     }
+
     void Start()
     {
-        //cam = Camera.main;    //테스트용 카메라
+        cam = Camera.main;    //테스트용 카메라
     }
 
     void Update()
     {
-        //cam.transform.position += Vector3.right * 4f * Time.deltaTime;    //테스트용 카메라
+        cam.transform.position += Vector3.right * 4f * Time.deltaTime;    //테스트용 카메라
 
         //생성된 Obstacle이 20개 이하일 때만 추가로 생성
-        if (curObjstacle.transform.childCount < 20)
+        if (transform.childCount < 20)
         {
             if (!isObstacle && Random.value > 0.5f) // 50% 확률로 장애물 생성
             {
@@ -39,6 +40,10 @@ public class ObstacleSpawner : MonoBehaviour
             {
                 SpawnGround();
             }
+
+            itemSpawner = lastObstacle.GetComponent<ItemSpawner>();
+
+            itemSpawner.SpawnItem();
         }
     }
 
@@ -47,7 +52,7 @@ public class ObstacleSpawner : MonoBehaviour
     {
         Vector3 newPosition = lastObstacle.position + new Vector3(3f, 0, 0);
         GameObject newGround = Instantiate(ground, newPosition, Quaternion.identity);
-        newGround.transform.SetParent(curObjstacle.transform);
+        newGround.transform.SetParent(transform);
         lastObstacle = newGround.transform;
 
         groundCnt++;
@@ -64,7 +69,7 @@ public class ObstacleSpawner : MonoBehaviour
 
         int randomIdx = Random.Range(0, obstaclesList.Length);
         GameObject newObstacle = Instantiate(obstaclesList[randomIdx], newPosition, Quaternion.identity);
-        newObstacle.transform.SetParent(curObjstacle.transform);
+        newObstacle.transform.SetParent(transform);
         lastObstacle = newObstacle.transform;
 
         groundCnt = 0;
