@@ -5,29 +5,32 @@ using UnityEngine;
 
 public enum UIState
 {
-    Home,
+    Start,
     Game,
     Pause,
-    GameOver,
+    End,
 }
 
 public class UIManager : MonoBehaviour
 {
-    HomeUI homeUI;
+    StartUI startUI;
     GameUI gameUI;
-    GameOverUI gameOverUI;
+    PauseUI puaseUI;
+    EndUI endUI;
     private UIState currentState;
 
     private void Awake()
     {
-        homeUI = GetComponentInChildren<HomeUI>(true);
-        homeUI.Init(this);
+        startUI = GetComponentInChildren<StartUI>(true);
+        startUI.Init(this);
         gameUI = GetComponentInChildren<GameUI>(true);
         gameUI.Init(this);
-        gameOverUI = GetComponentInChildren<GameOverUI>(true);
-        gameOverUI.Init(this);
+        puaseUI = GetComponentInChildren<PauseUI>(true);
+        puaseUI.Init(this);
+        endUI = GetComponentInChildren<EndUI>(true);
+        endUI.Init(this);
 
-        ChangeState(UIState.Home);
+        ChangeState(UIState.Start);
     }
 
     public void SetPlayGame()
@@ -35,26 +38,27 @@ public class UIManager : MonoBehaviour
         ChangeState(UIState.Game);
     }
 
-    public void SetGameOver()
+    public void SetEndGame()
     {
-        ChangeState(UIState.GameOver);
+        ChangeState(UIState.End);
     }
 
-    public void ChangeWave(int waveIndex)
-    {
-        gameUI.UpdateWaveText(waveIndex);
-    }
+    //public void ChangeWave(int waveIndex)
+    //{
+    //    gameUI.UpdateWaveText(waveIndex);
+    //}
 
-    public void ChangePlayerHP(float currentHP, float maxHP)
-    {
-        gameUI.UpdateHPSlider(currentHP / maxHP);
-    }
+    //public void ChangePlayerHP(float currentHP, float maxHP)
+    //{
+    //    gameUI.UpdateHPSlider(currentHP / maxHP);
+    //}
 
     public void ChangeState(UIState state)
     {
         currentState = state;
-        homeUI.SetActive(currentState);
+        startUI.SetActive(currentState);
         gameUI.SetActive(currentState);
-        gameOverUI.SetActive(currentState);
+        //pauseUI.SetActive(currentState);
+        endUI.SetActive(currentState);
     }
 }
