@@ -5,6 +5,7 @@ public class Player : MonoBehaviour
     Rigidbody2D _rigidbody;
     Animator _animator;
     [SerializeField] private float moveSpeed = 3f;
+    [SerializeField] private float collisionPenalty = 5f; //충돌 시 감소시킬 시간
 
     #region 점프 관련 로직
     //Update에서 입력을 받고 
@@ -102,9 +103,9 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space)) Jump();
 
         //슬라이드
-        if (isOnGround && Input.GetKeyDown(KeyCode.LeftShift)) 
+        if (isOnGround && Input.GetKeyDown(KeyCode.LeftShift))
             IsSliding = true;
-        if (isSliding && Input.GetKeyUp(KeyCode.LeftShift)) 
+        if (isSliding && Input.GetKeyUp(KeyCode.LeftShift))
             IsSliding = false;
     }
 
@@ -126,6 +127,8 @@ public class Player : MonoBehaviour
             isDoubleJumped = false;
             isOnGround = true;
         }
+
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -137,5 +140,13 @@ public class Player : MonoBehaviour
             item.ApplyEffect(this);
             Destroy(collision.gameObject);
         }
+        //장애물 충돌시 로직
+        if (collision.gameObject.CompareTag("Obstacle"))
+        {
+            Debug.Log($"장애물 충돌, 생존시간 증가 현재 {SurviveTime}");
+            SurviveTime += collisionPenalty;
+        }
+
+
     }
 }
