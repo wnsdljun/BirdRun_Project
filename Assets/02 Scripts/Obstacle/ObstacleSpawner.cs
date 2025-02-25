@@ -15,7 +15,7 @@ public class ObstacleSpawner : MonoBehaviour
     private int groundCnt = 0;
     private bool isObstacle = false;
 
-    Camera cam;   //테스트용 카메라
+
 
     private void Awake()
     {
@@ -23,13 +23,11 @@ public class ObstacleSpawner : MonoBehaviour
 
     void Start()
     {
-        cam = Camera.main;    //테스트용 카메라
+        
     }
 
     void Update()
     {
-        cam.transform.position += Vector3.right * 10f * Time.deltaTime;    //테스트용 카메라
-
         //생성된 Obstacle이 20개 이하일 때만 추가로 생성
         if (transform.childCount < 20)
         {
