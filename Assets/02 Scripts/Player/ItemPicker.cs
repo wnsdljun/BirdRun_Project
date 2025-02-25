@@ -15,7 +15,7 @@ public class ItemPicker : MonoBehaviour
     {
         if (collision is IItemEffect item)
         {
-            //item.ApplyEffect(player.ToString());
+            item.ApplyEffect(player);
 
         }
         if (collision.CompareTag("Item"))
