@@ -21,7 +21,16 @@ public class Player : MonoBehaviour
     }
     #endregion
     #region 슬라이드 관련 로직
-
+    private bool isSliding = false;
+    private void Slide()
+    {
+        isSliding = true;
+        //애니메이터- 슬라이딩 true
+    }
+    private void Slide_Getup()
+    {
+        isSliding = false;
+    }
     #endregion
     #region 하트 관련 로직은 여기에
     [SerializeField] private float initialSurviveTime;//생존 시간- 에디터에서 수정
@@ -54,7 +63,12 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //점프
         if (Input.GetKeyDown(KeyCode.Space)) Jump();
+
+        //슬라이드
+        if (isOnGround && Input.GetKeyDown(KeyCode.LeftShift)) Slide();
+        if (isSliding && Input.GetKeyUp(KeyCode.LeftShift)) Slide_Getup();
     }
 
     private void FixedUpdate()
