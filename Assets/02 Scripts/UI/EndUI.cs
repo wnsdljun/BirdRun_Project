@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -24,7 +21,7 @@ public class EndUI : BaseUI
 
     public void OnClickExitButton()
     {
-        Application.Quit();
+        SceneManager.LoadScene("02 LoadScene");
     }
 
     protected override UIState GetUIState()
