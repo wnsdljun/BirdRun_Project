@@ -54,7 +54,19 @@ public class Player : MonoBehaviour
         Time.timeScale = 0;
     }
     #endregion
-
+    #region 아이템 사용 로직은 여기에
+    public void Heal(float amount)
+    {
+        SurviveTime -= amount;
+    }
+    private float speedBoost = 0;
+    private float speedBoostDuration = 0;
+    public void SpeedUp(float speed, float duration)
+    {
+        speedBoost = speed;
+        speedBoostDuration = duration;
+    }
+    #endregion
     // Start is called before the first frame update
     void Start()
     {
@@ -78,7 +90,9 @@ public class Player : MonoBehaviour
         //생존시간 로직
         SurviveTime += Time.deltaTime;
         //이동속도 로직
-        _rigidbody.velocity = new Vector2(moveSpeed, _rigidbody.velocity.y);
+        _rigidbody.velocity = new Vector2(moveSpeed + speedBoost, _rigidbody.velocity.y);
+        if (speedBoostDuration >= 0) speedBoostDuration -= Time.fixedDeltaTime;
+        else speedBoost = 0f;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
