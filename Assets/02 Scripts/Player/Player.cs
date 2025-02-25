@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -58,6 +57,7 @@ public class Player : MonoBehaviour
     public void Heal(float amount)
     {
         SurviveTime -= amount;
+        Debug.Log($"생존시간 \"{amount}\" 회복. total: {SurviveTime}");
     }
     private float speedBoost = 0;
     private float speedBoostDuration = 0;
@@ -65,6 +65,7 @@ public class Player : MonoBehaviour
     {
         speedBoost = speed;
         speedBoostDuration = duration;
+        Debug.Log($"스피드업 for [{duration}]");
     }
     #endregion
     // Start is called before the first frame update
@@ -110,6 +111,8 @@ public class Player : MonoBehaviour
         //아이템이 플레이어와 가까워 충돌했다면
         if (collision.CompareTag("Item"))
         {
+            IItemEffect item = collision.gameObject.GetComponent<IItemEffect>();
+            item.ApplyEffect(this);
             Destroy(collision.gameObject);
         }
     }

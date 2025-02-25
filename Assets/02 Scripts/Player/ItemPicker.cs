@@ -13,11 +13,6 @@ public class ItemPicker : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision is IItemEffect item)
-        {
-            item.ApplyEffect(player);
-
-        }
         if (collision.CompareTag("Item"))
         {
             StartCoroutine(PickupItem(collision.gameObject));
