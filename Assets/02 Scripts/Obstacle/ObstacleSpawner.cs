@@ -31,8 +31,8 @@ public class ObstacleSpawner : MonoBehaviour
         cam.transform.position += Vector3.right * 10f * Time.deltaTime;    //테스트용 카메라
 
         //생성된 Obstacle이 20개 이하일 때만 추가로 생성
-        //if (transform.childCount < 20)
-        //{
+        if (transform.childCount < 20)
+        {
             if (!isObstacle && Random.value > 0.5f) // 50% 확률로 장애물 생성
             {
                 SpawnObstacle();
@@ -43,7 +43,7 @@ public class ObstacleSpawner : MonoBehaviour
             }
             itemSpawner = lastObstacle.GetComponent<ItemSpawner>();
             itemSpawner.SpawnItem();
-        //}
+        }
     }
 
     //바닥 생성
