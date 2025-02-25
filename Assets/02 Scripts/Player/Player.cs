@@ -4,7 +4,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     Rigidbody2D _rigidbody;
-    #region Jump
+    #region 점프 관련 로직
     //Update에서 입력을 받고 
     [SerializeField] private float jumpPower = 20f;
 
@@ -20,7 +20,29 @@ public class Player : MonoBehaviour
         _rigidbody.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
     }
     #endregion
+    #region 슬라이드 관련 로직
 
+    #endregion
+    #region 하트 관련 로직은 여기에
+    [SerializeField] private float initialSurviveTime;//생존 시간- 에디터에서 수정
+    private float surviveTime = 0f; //이 값이 증가하며 초기 생존 시간 값보다 크거나 같게되면 게임오버
+    public float SurviveTime 
+    { 
+        get => surviveTime; 
+        set
+        {
+            //하트 물약을 많이 먹어서 생존시간이 음수로 내려가는 경우?
+            surviveTime = value;
+            if (surviveTime >= initialSurviveTime) TimeOver();
+        }
+    }
+
+    private void TimeOver()
+    {
+        Debug.Log("시간 다 됐다");
+        Time.timeScale = 0;
+    }
+    #endregion
 
     // Start is called before the first frame update
     void Start()
@@ -37,11 +59,15 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
+        //생존시간 로직
+        SurviveTime += Time.deltaTime;
+        //이동속도 로직
 
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        //지면과 충돌시 로직
         if (collision.gameObject.CompareTag("Ground"))
         {
             isDoubleJumped = false;
