@@ -9,6 +9,7 @@ public abstract class ItemSpawner : MonoBehaviour
 
     private void Awake()
     {
+        //아이템이 생성 될 위치 지정
         foreach (Transform child in transform)
         {
             if (child.name.Contains("ItemPoint"))

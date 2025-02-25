@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 9055140014064989021}
   - component: {fileID: 7524706974201460402}
   - component: {fileID: 3685396210468088689}
+  - component: {fileID: -6245775671512870212}
   m_Layer: 0
   m_Name: 05 HPPotionSmall
   m_TagString: Item
@@ -120,3 +121,15 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &-6245775671512870212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1338819871950912818}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67ad00a7f5ecf6a4f87639d127a92a61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class ObstacleSpawner : MonoBehaviour
 {
-    public GameObject[] obstaclesList;  //장애물리스트
-    public GameObject itemObstacle;
+    public GameObject[] obstaclesList;  //지형 목록
+    public GameObject itemObstacle;     //아이템 지형
 
     public GameObject ground;
     public Transform lastObstacle;
@@ -29,6 +29,8 @@ public class ObstacleSpawner : MonoBehaviour
             {
                 SpawnGround();
             }
+
+            //지형이 생성 됐을 경우에만 아이템 생성되도록 함
             if (isSpawner)
             {
                 itemSpawner = lastObstacle.GetComponent<ItemSpawner>();
@@ -54,6 +56,7 @@ public class ObstacleSpawner : MonoBehaviour
     //장애물 생성
     void SpawnObstacle()
     {
+        //장애물이 연속으로 생성되지 않도록 조건 처리
         if (groundCnt < 2)
         {
             isSpawner = false;
@@ -64,6 +67,7 @@ public class ObstacleSpawner : MonoBehaviour
 
         Vector3 newPosition = lastObstacle.position + new Vector3(3f, 0, 0);
 
+        //10% 확률로 아이템 지형 생성
         if (Random.value < 0.1f)
             newObstacle = Instantiate(itemObstacle, newPosition, Quaternion.identity);
         else

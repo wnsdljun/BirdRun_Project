@@ -10,6 +10,7 @@ public class SeedSpawner : ItemSpawner
     public float rainbowSeedChance = 0.2f; // 무지개 씨앗 확률 (20%)
     public float FruitChance = 0.1f;   // 과일 아이템 확률 (10%)
 
+    //아이템 생성
     public override void SpawnItem()
     {
         foreach (var itemPosition in itemPoint)
@@ -23,6 +24,7 @@ public class SeedSpawner : ItemSpawner
         }
     }
 
+    //확률에 맞게 아이템 랜덤 결정
     public override GameObject SelectRandomItem()
     {
         float randomValue = Random.value;

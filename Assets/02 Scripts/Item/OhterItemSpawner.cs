@@ -6,6 +6,7 @@ public class OhterItemSpawner : ItemSpawner
 {
     public GameObject[] itemList;  //아이템 리스트
 
+    //아이템 생성
     public override void SpawnItem()
     {
         foreach (var itemPosition in itemPoint)
@@ -19,6 +20,7 @@ public class OhterItemSpawner : ItemSpawner
         }
     }
 
+    //아이템 종류를 랜덤으로 결정
     public override GameObject SelectRandomItem()
     {
         int randomIdx = Random.Range(0, itemList.Length);
