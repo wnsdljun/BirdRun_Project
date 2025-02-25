@@ -3,6 +3,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     Rigidbody2D _rigidbody;
+    Animator _animator;
     [SerializeField] private float moveSpeed = 3f;
 
     #region 점프 관련 로직
@@ -23,10 +24,24 @@ public class Player : MonoBehaviour
     #endregion
     #region 슬라이드 관련 로직
     private bool isSliding = false;
+
+    //슬라이딩 상태를 변경하면 애니메이터도 값 바꿔줌.
+    public bool IsSliding
+    {
+        get => isSliding;
+        set
+        {
+            if (isSliding != value)
+            {
+                isSliding = value;
+                _animator.SetBool("IsSlide", isSliding);
+            }
+
+        }
+    }
     private void Slide()
     {
         isSliding = true;
-        //애니메이터- 슬라이딩 true
     }
     private void Slide_Getup()
     {
@@ -36,9 +51,9 @@ public class Player : MonoBehaviour
     #region 하트 관련 로직은 여기에
     [SerializeField] private float initialSurviveTime;//생존 시간- 에디터에서 수정
     private float surviveTime = 0f; //이 값이 증가하며 초기 생존 시간 값보다 크거나 같게되면 게임오버
-    public float SurviveTime 
-    { 
-        get => surviveTime; 
+    public float SurviveTime
+    {
+        get => surviveTime;
         set
         {
             //하트 물약을 많이 먹어서 생존시간이 음수로 내려가는 경우?
@@ -68,10 +83,15 @@ public class Player : MonoBehaviour
         Debug.Log($"스피드업 for [{duration}]");
     }
     #endregion
+
+
+
+
     // Start is called before the first frame update
     void Start()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
+        _animator = GetComponent<Animator>();
     }
 
 
@@ -82,8 +102,10 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space)) Jump();
 
         //슬라이드
-        if (isOnGround && Input.GetKeyDown(KeyCode.LeftShift)) Slide();
-        if (isSliding && Input.GetKeyUp(KeyCode.LeftShift)) Slide_Getup();
+        if (isOnGround && Input.GetKeyDown(KeyCode.LeftShift)) 
+            IsSliding = true;
+        if (isSliding && Input.GetKeyUp(KeyCode.LeftShift)) 
+            IsSliding = false;
     }
 
     private void FixedUpdate()
