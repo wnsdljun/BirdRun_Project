@@ -31,7 +31,7 @@ public class ItemPicker : MonoBehaviour
         //처음 위치에서 플레이어 위치까지 거리 계산 후 이동속도 산출
         Vector2 initialPos = item.transform.position;
         Vector2 distance = (Vector2)player.transform.position - initialPos;
-        float moveSpeed = distance.magnitude / pickupDuration / Time.fixedDeltaTime;
+        float moveSpeed = distance.magnitude / pickupDuration * Time.fixedDeltaTime;
         //물리연산의 dT를 코루틴 간격으로 사용.
 
         Vector2 heading;
