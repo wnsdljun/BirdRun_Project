@@ -14,17 +14,7 @@ public class ObstacleSpawner : MonoBehaviour
 
     private int groundCnt = 0;
     private bool isObstacle = false;
-
-
-
-    private void Awake()
-    {
-    }
-
-    void Start()
-    {
-        
-    }
+    private bool isSpawner = true;
 
     void Update()
     {
@@ -39,8 +29,11 @@ public class ObstacleSpawner : MonoBehaviour
             {
                 SpawnGround();
             }
-            itemSpawner = lastObstacle.GetComponent<ItemSpawner>();
-            itemSpawner.SpawnItem();
+            if (isSpawner)
+            {
+                itemSpawner = lastObstacle.GetComponent<ItemSpawner>();
+                itemSpawner.SpawnItem();
+            }
         }
     }
 
@@ -55,12 +48,17 @@ public class ObstacleSpawner : MonoBehaviour
         groundCnt++;
 
         isObstacle = false;
+        isSpawner = true;
     }
 
     //장애물 생성
     void SpawnObstacle()
     {
-        if (groundCnt < 2) return;
+        if (groundCnt < 2)
+        {
+            isSpawner = false;
+            return;
+        }
 
         GameObject newObstacle;
 
@@ -80,5 +78,6 @@ public class ObstacleSpawner : MonoBehaviour
         groundCnt = 0;
 
         isObstacle = true;
+        isSpawner = true;
     }
 }

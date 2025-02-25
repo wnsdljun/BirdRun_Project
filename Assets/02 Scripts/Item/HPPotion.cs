@@ -4,9 +4,18 @@ using UnityEngine;
 
 public class HPPotion : MonoBehaviour, IItemEffect
 {
-    public void ApplyEffect(string player)
+    float heal = 0;
+
+    private void Awake()
     {
-        
+        if (transform.name.Contains("Small"))
+            heal = 10;
+        else if (transform.name.Contains("Large"))
+            heal = 50;
+    }
+
+    public void ApplyEffect(Player player)
+    {
+
     }
 }
-
