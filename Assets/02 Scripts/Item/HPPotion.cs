@@ -16,6 +16,6 @@ public class HPPotion : MonoBehaviour, IItemEffect
 
     public void ApplyEffect(Player player)
     {
-
+        player.Heal(heal);
     }
 }

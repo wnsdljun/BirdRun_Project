@@ -9,6 +9,6 @@ public class SpeedUp : MonoBehaviour, IItemEffect
 
     public void ApplyEffect(Player player)
     {
-
+        player.SpeedUp(speed, duration);
     }
 }
