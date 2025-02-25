@@ -15,7 +15,7 @@ public class UIManager : MonoBehaviour
 {
     StartUI startUI;
     GameUI gameUI;
-    PauseUI puaseUI;
+    PauseUI pauseUI;
     EndUI endUI;
     private UIState currentState;
 
@@ -24,9 +24,9 @@ public class UIManager : MonoBehaviour
         startUI = GetComponentInChildren<StartUI>(true);
         startUI.Init(this);
         gameUI = GetComponentInChildren<GameUI>(true);
-        gameUI.Init(this);
-        puaseUI = GetComponentInChildren<PauseUI>(true);
-        puaseUI.Init(this);
+        //gameUI.Init(this);
+        pauseUI = GetComponentInChildren<PauseUI>(true);
+        pauseUI.Init(this);
         endUI = GetComponentInChildren<EndUI>(true);
         endUI.Init(this);
 
@@ -58,7 +58,7 @@ public class UIManager : MonoBehaviour
         currentState = state;
         startUI.SetActive(currentState);
         gameUI.SetActive(currentState);
-        //pauseUI.SetActive(currentState);
+        pauseUI.SetActive(currentState);
         endUI.SetActive(currentState);
     }
 }

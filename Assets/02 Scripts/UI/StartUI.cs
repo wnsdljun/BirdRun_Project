@@ -20,10 +20,10 @@ public class StartUI : BaseUI
         //GameManager.instance.StartGame();
     }
 
-    public void OnClickExitButton()
-    {
-        Application.Quit();
-    }
+    //public void OnClickExitButton()
+    //{
+    //    Application.Quit();
+    //}
 
     protected override UIState GetUIState()
     {
