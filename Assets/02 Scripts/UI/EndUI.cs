@@ -5,16 +5,16 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class GameOverUI : BaseUI
+public class EndUI : BaseUI
 {
     [SerializeField] private Button restartButton;
-    [SerializeField] private Button exitButton;
+    [SerializeField] private Button endButton;
 
     public override void Init(UIManager uiManager)
     {
         base.Init(uiManager);
         restartButton.onClick.AddListener(OnClickRestartButton);
-        exitButton.onClick.AddListener(OnClickExitButton);
+        endButton.onClick.AddListener(OnClickExitButton);
     }
 
     public void OnClickRestartButton()
@@ -29,6 +29,6 @@ public class GameOverUI : BaseUI
 
     protected override UIState GetUIState()
     {
-        return UIState.GameOver;
+        return UIState.End;
     }
 }

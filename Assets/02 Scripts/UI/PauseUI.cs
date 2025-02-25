@@ -1,18 +1,33 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
-public class PauseUI : MonoBehaviour
+public class PauseUI : BaseUI
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private Button keepButton;
+    [SerializeField] private Button endButton;
+
+    public override void Init(UIManager uiManager)
     {
-        
+        base.Init(uiManager);
+        keepButton.onClick.AddListener(OnClickKeepPlayButton);
+        endButton.onClick.AddListener(OnClickExitButton);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void OnClickKeepPlayButton()
     {
-        
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void OnClickExitButton()
+    {
+        Application.Quit();
+    }
+
+    protected override UIState GetUIState()
+    {
+        return UIState.End;
     }
 }
