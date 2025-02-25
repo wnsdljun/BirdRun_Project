@@ -4,6 +4,8 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     Rigidbody2D _rigidbody;
+    [SerializeField] private float moveSpeed = 3f;
+
     #region 점프 관련 로직
     //Update에서 입력을 받고 
     [SerializeField] private float jumpPower = 20f;
@@ -76,7 +78,7 @@ public class Player : MonoBehaviour
         //생존시간 로직
         SurviveTime += Time.deltaTime;
         //이동속도 로직
-
+        _rigidbody.velocity = new Vector2(moveSpeed, _rigidbody.velocity.y);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
