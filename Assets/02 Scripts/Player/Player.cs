@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -87,8 +88,8 @@ public class Player : MonoBehaviour
         SurviveTime -= amount;
         Debug.Log($"생존시간 \"{amount}\" 회복. total: {SurviveTime}");
     }
-    private float speedBoost = 0;
-    private float speedBoostDuration = 0;
+    private float speedBoost = 0f;
+    private float speedBoostDuration = 0f;
     public void SpeedUp(float speed, float duration)
     {
         speedBoost = speed;
@@ -163,10 +164,35 @@ public class Player : MonoBehaviour
         //장애물 충돌시 로직
         if (collision.gameObject.CompareTag("Obstacle"))
         {
-            Debug.Log($"장애물 충돌, 생존시간 증가 현재 {SurviveTime}");
-            SurviveTime += collisionPenalty;
+            if (speedBoostDuration <= 0) //가속중이 아니면
+            {
+                Debug.Log($"장애물 충돌, 생존시간 증가 현재 {SurviveTime}");
+                SurviveTime += collisionPenalty;
+            }
+            else //가속중일때
+            {
+                Debug.Log($"장애물 충돌, 무적상태");
+                DestroyObstacle(collision.gameObject);
+            }
         }
+    }
 
+    private void DestroyObstacle(GameObject go)
+    {
+        float animationTime = 3f;
+        StartCoroutine(ObstacleDestroyEffect(go, animationTime));
+    }
+    private IEnumerator ObstacleDestroyEffect(GameObject go, float time) //나중에 시간 되면 포물선 그리면서 날아가게 수정.
+    {
+        float elapsed = 0f;
+        while(go != null && elapsed <= time)
+        {
+            go.transform.rotation = Quaternion.Euler(0, 0, go.transform.rotation.eulerAngles.z + 35f);
+            go.transform.position = new Vector3(go.transform.position.x + 0.5f, go.transform.position.y - 0.002f, go.transform.position.z);
 
+            elapsed += Time.fixedDeltaTime;
+            yield return new WaitForFixedUpdate();
+        }
+        Destroy(go);
     }
 }
