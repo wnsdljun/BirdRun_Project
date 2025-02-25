@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class HPPotion : MonoBehaviour, IItemEffect
 {
-    float heal = 0;
+    float heal;
 
     private void Awake()
     {

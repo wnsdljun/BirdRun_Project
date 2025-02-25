@@ -2,11 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpeedUp : MonoBehaviour, IItemEffect
+public class Fruit : MonoBehaviour, IItemEffect
 {
-    public float speed = 10f;
-    public float duration = 5f;
-
     public void ApplyEffect(Player player)
     {
 
