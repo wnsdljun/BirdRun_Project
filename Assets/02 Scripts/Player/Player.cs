@@ -90,4 +90,13 @@ public class Player : MonoBehaviour
             isOnGround = true;
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        //아이템이 플레이어와 가까워 충돌했다면
+        if (collision.CompareTag("Item"))
+        {
+            Destroy(collision.gameObject);
+        }
+    }
 }
