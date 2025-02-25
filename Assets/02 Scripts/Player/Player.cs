@@ -1,9 +1,11 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
     Rigidbody2D _rigidbody;
     Animator _animator;
+    BoxCollider2D _boxCollider;
     [SerializeField] private float moveSpeed = 3f;
     [SerializeField] private float collisionPenalty = 5f; //충돌 시 감소시킬 시간
 
@@ -25,7 +27,10 @@ public class Player : MonoBehaviour
     #endregion
     #region 슬라이드 관련 로직
     private bool isSliding = false;
-
+    private Vector2 colliderOffsetAtStand;
+    private Vector2 colliderSizeAtStand;
+    private Vector2 colliderOffsetAtSlide;
+    private Vector2 colliderSizeAtSlide;
     //슬라이딩 상태를 변경하면 애니메이터도 값 바꿔줌.
     public bool IsSliding
     {
@@ -35,18 +40,25 @@ public class Player : MonoBehaviour
             if (isSliding != value)
             {
                 isSliding = value;
-                _animator.SetBool("IsSlide", isSliding);
+                Slide();
             }
 
         }
     }
+
     private void Slide()
     {
-        isSliding = true;
-    }
-    private void Slide_Getup()
-    {
-        isSliding = false;
+        _animator.SetBool("IsSlide", isSliding);
+        if (isSliding) //슬라이드중이라면
+        {
+            _boxCollider.size = colliderSizeAtSlide;
+            _boxCollider.offset = colliderOffsetAtSlide;
+        }
+        else
+        {
+            _boxCollider.size = colliderSizeAtStand;
+            _boxCollider.offset = colliderOffsetAtStand;
+        }
     }
     #endregion
     #region 하트 관련 로직은 여기에
@@ -93,6 +105,14 @@ public class Player : MonoBehaviour
     {
         _rigidbody = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
+
+        #region 슬라이딩 할때 콜라이더 크기 바꿔주는 부분. 크기를 불러와 저장한다.
+        _boxCollider = GetComponent<BoxCollider2D>();
+        colliderOffsetAtStand = _boxCollider.offset;
+        colliderSizeAtStand = _boxCollider.size;
+        colliderOffsetAtSlide = new Vector2(_boxCollider.offset.x, 0f);
+        colliderSizeAtSlide = new Vector2(_boxCollider.size.x, 0.9f);
+        #endregion 
     }
 
 

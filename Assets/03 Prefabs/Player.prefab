@@ -102,6 +102,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 3
+  collisionPenalty: 5
   jumpPower: 20
   initialSurviveTime: 600
 --- !u!61 &8479613610193022733
@@ -263,9 +264,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.28, y: 0}
   serializedVersion: 2
-  m_Radius: 2
+  m_Radius: 1
 --- !u!50 &126416873988685180
 Rigidbody2D:
   serializedVersion: 4
