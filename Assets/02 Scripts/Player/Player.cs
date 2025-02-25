@@ -4,6 +4,8 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     Rigidbody2D _rigidbody;
+    [SerializeField] private float moveSpeed = 3f;
+
     #region 점프 관련 로직
     //Update에서 입력을 받고 
     [SerializeField] private float jumpPower = 20f;
@@ -21,7 +23,16 @@ public class Player : MonoBehaviour
     }
     #endregion
     #region 슬라이드 관련 로직
-
+    private bool isSliding = false;
+    private void Slide()
+    {
+        isSliding = true;
+        //애니메이터- 슬라이딩 true
+    }
+    private void Slide_Getup()
+    {
+        isSliding = false;
+    }
     #endregion
     #region 하트 관련 로직은 여기에
     [SerializeField] private float initialSurviveTime;//생존 시간- 에디터에서 수정
@@ -54,7 +65,12 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //점프
         if (Input.GetKeyDown(KeyCode.Space)) Jump();
+
+        //슬라이드
+        if (isOnGround && Input.GetKeyDown(KeyCode.LeftShift)) Slide();
+        if (isSliding && Input.GetKeyUp(KeyCode.LeftShift)) Slide_Getup();
     }
 
     private void FixedUpdate()
@@ -62,7 +78,7 @@ public class Player : MonoBehaviour
         //생존시간 로직
         SurviveTime += Time.deltaTime;
         //이동속도 로직
-
+        _rigidbody.velocity = new Vector2(moveSpeed, _rigidbody.velocity.y);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

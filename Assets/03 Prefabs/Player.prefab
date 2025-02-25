@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3638612774084501831}
   - component: {fileID: 851711053045624846}
+  - component: {fileID: 1711056759439661043}
   - component: {fileID: 8479613610193022733}
   - component: {fileID: 5251144784354396105}
-  - component: {fileID: 1711056759439661043}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -87,6 +87,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1711056759439661043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4633980591629270819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f5b1d64a0426e14696dd60a78d003d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 3
+  jumpPower: 20
+  initialSurviveTime: 5
 --- !u!61 &8479613610193022733
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -130,8 +145,8 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
+  m_Size: {x: 0.8, y: 0.8}
+  m_EdgeRadius: 0.1
 --- !u!50 &5251144784354396105
 Rigidbody2D:
   serializedVersion: 4
@@ -159,17 +174,3 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
---- !u!114 &1711056759439661043
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4633980591629270819}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f5b1d64a0426e14696dd60a78d003d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  jumpPower: 20
-  initialSurviveTime: 5
