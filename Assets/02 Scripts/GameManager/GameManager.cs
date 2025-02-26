@@ -107,14 +107,18 @@ public partial class GameManager : MonoBehaviour
         //페이드 아웃 추가?
 
         //로드씬 불러오기
-        SceneManager.LoadScene("02 LoadScene");
-        StartCoroutine(LoadSceneCoroutine(sceneName));
-    }
+        //StartCoroutine(AwaitLoadScene(sceneName));
+        //로드씬도 완전히 로드 된 후 그다음 씬을 호출해줘야됨. 왜...?
 
+        string str = sceneName.ToString();
+        SceneManager.LoadSceneAsync("02 LoadScene");
+        StartCoroutine(LoadSceneCoroutine(str));
+    }
     private IEnumerator LoadSceneCoroutine(string name)
     {
         float elapsed = 0f;
-        float waitTime = 2f;
+        float waitTime = 5f;
+        
         if (SelectedCharater != null)
         {
             SceneManager.LoadScene($"{SelectedCharater.name}Scene", LoadSceneMode.Additive);
@@ -125,13 +129,14 @@ public partial class GameManager : MonoBehaviour
         }
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(name);
         asyncLoad.allowSceneActivation = false; //씬이 전부 로드되더라도 실행하지 않음.
-
+        
         while (elapsed <= waitTime)
         {
             elapsed += Time.deltaTime;
 
             yield return null;
         }
+        asyncLoad.allowSceneActivation = true;
     }
     //씬 변경 이벤트.
     //씬이 변경되었다면 새로 호출된 씬 이름을 확인하여 동작 수행.

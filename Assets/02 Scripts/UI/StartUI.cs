@@ -14,7 +14,9 @@ public class StartUI : BaseUI
 
     public void OnClickStartButton()
     {
-        SceneManager.LoadScene("02 LoadScene");
+        //SceneManager.LoadScene("02 LoadScene");
+        GameManager.Instance.LoadScene("03 SelectScene");
+        //SceneManager.UnloadScene(SceneManager.GetActiveScene());
     }
 
     protected override UIState GetUIState()
