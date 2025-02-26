@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class StartUI : BaseUI
@@ -13,7 +14,7 @@ public class StartUI : BaseUI
 
     public void OnClickStartButton()
     {
-        //GameManager.instance.StartGame();
+        SceneManager.LoadScene("02 LoadScene");
     }
 
     protected override UIState GetUIState()

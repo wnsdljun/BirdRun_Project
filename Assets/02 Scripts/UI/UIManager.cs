@@ -40,6 +40,11 @@ public class UIManager : MonoBehaviour
         ChangeState(UIState.End);
     }
 
+    public void SetPauseGame()
+    {
+        ChangeState(UIState.Pause);
+    }
+
     //public void ChangeWave(int waveIndex)
     //{
     //    gameUI.UpdateWaveText(waveIndex);
