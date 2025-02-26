@@ -162,7 +162,7 @@ public class Player : MonoBehaviour
             Destroy(collision.gameObject);
         }
         //장애물 충돌시 로직
-        if (collision.gameObject.CompareTag("Obstacle"))
+        if (collision.CompareTag("Obstacle"))
         {
             if (speedBoostDuration <= 0) //가속중이 아니면
             {
@@ -174,6 +174,11 @@ public class Player : MonoBehaviour
                 Debug.Log($"장애물 충돌, 무적상태");
                 DestroyObstacle(collision.gameObject);
             }
+        }
+        //낙사
+        if (collision.CompareTag("Finish"))
+        {
+            SurviveTime = initialSurviveTime;
         }
     }
 
