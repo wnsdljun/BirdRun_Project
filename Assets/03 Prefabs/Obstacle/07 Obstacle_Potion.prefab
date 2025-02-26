@@ -139,9 +139,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 91729975944319568}
-  - component: {fileID: 663996238655203779}
+  - component: {fileID: 484737003218658424}
   m_Layer: 0
-  m_Name: 06 Obstacle_Item
+  m_Name: 07 Obstacle_Potion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -164,7 +164,7 @@ Transform:
   - {fileID: 7588626821266000131}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &663996238655203779
+--- !u!114 &484737003218658424
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -173,12 +173,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 5050347730431067364}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 68912e85478772a4897c70ddc6a408c1, type: 3}
+  m_Script: {fileID: 11500000, guid: 527e0ffcd78a5404a8bb69471e3fdf2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   itemPoint: []
   itemList:
-  - {fileID: 4253762692725945257, guid: 5489da15a41773e4aaf85117b9381072, type: 3}
+  - {fileID: 1338819871950912818, guid: 6ec9a84784e14b047a4485394f9ccebf, type: 3}
+  - {fileID: 1338819871950912818, guid: 45bbe7c6c717a134daa6d861988f3d9d, type: 3}
 --- !u!1 &8463484842319087485
 GameObject:
   m_ObjectHideFlags: 0

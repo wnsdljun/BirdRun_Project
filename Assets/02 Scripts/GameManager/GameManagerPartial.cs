@@ -4,6 +4,9 @@ using UnityEngine;
 
 public partial class GameManager : MonoBehaviour
 {
+    public string potionType = "Small";
+    private int lastSpawnTime = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -12,7 +15,25 @@ public partial class GameManager : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
+    {
+        if ((int)player.SurviveTime % 60 == 0 && lastSpawnTime != (int)player.SurviveTime)
+        {
+            lastSpawnTime = (int)player.SurviveTime;
+            potionType = "Large";
+            PotionSpawn();
+        }
+        else if ((int)player.SurviveTime % 15 == 0 && lastSpawnTime != (int)player.SurviveTime)
+        {
+            lastSpawnTime = (int)player.SurviveTime;
+            potionType = "Small";
+            PotionSpawn();
+        }
+        else
+            ObstacleSpawn();
+    }
+
+    void ObstacleSpawn()
     {
         //지형 생성
         //생성된 Obstacle이 20개 이하일 때만 추가로 생성
@@ -34,5 +55,12 @@ public partial class GameManager : MonoBehaviour
                 obstacles.itemSpawner.SpawnItem();
             }
         }
+    }
+
+    void PotionSpawn()
+    {
+        obstacles.SpawnPotion();
+        obstacles.itemSpawner = obstacles.lastObstacle.GetComponent<ItemSpawner>();
+        obstacles.itemSpawner.SpawnItem();
     }
 }

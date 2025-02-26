@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class HPPotion : MonoBehaviour, IItemEffect
 {
-    float heal;
+    float healPercent;
 
     private void Awake()
     {
         if (transform.name.Contains("Small"))
-            heal = 10;
+            healPercent = 0.25f;
         else if (transform.name.Contains("Large"))
-            heal = 50;
+            healPercent = 0.5f;
     }
 
     public void ApplyEffect(Player player)
     {
-        player.Heal(heal);
+        player.Heal(healPercent);
     }
 }

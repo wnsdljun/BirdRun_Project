@@ -6,6 +6,7 @@ public class ObstacleSpawner : MonoBehaviour
 {
     public GameObject[] obstaclesList;  //지형 목록
     public GameObject itemObstacle;     //아이템 지형
+    public GameObject potionObstacle;   //회복 아이템 지형
 
     public GameObject ground;
     public Transform lastObstacle;
@@ -15,10 +16,6 @@ public class ObstacleSpawner : MonoBehaviour
     private int groundCnt = 0;
     [HideInInspector] public bool isObstacle = false;
     [HideInInspector] public bool isSpawner = true;
-
-    void Update()
-    {
-    }
 
     //바닥 생성
     public void SpawnGround()
@@ -64,5 +61,14 @@ public class ObstacleSpawner : MonoBehaviour
 
         isObstacle = true;
         isSpawner = true;
+    }
+
+    //포션 생성
+    public void SpawnPotion()
+    {
+        Vector3 newPosition = lastObstacle.position + new Vector3(3f, 0, 0);
+        GameObject newGround = Instantiate(potionObstacle, newPosition, Quaternion.identity);
+        newGround.transform.SetParent(transform);
+        lastObstacle = newGround.transform;
     }
 }
