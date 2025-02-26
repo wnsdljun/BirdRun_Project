@@ -156,9 +156,6 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-        //생존시간 로직
-        SurviveTime += Time.fixedDeltaTime;
-        playTime += Time.fixedDeltaTime;
         //이동속도 로직
         _rigidbody.velocity = new Vector2(moveSpeed + speedBoost, _rigidbody.velocity.y);
         if (speedBoostDuration >= 0)
