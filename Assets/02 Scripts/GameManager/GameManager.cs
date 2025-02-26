@@ -91,6 +91,7 @@ public partial class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
 
         _UIManager = FindAnyObjectByType<UIManager>();
+        player = FindAnyObjectByType<Player>();
         //DontDestroyOnLoad(_UIManager.gameObject);
 
         obstacles = FindAnyObjectByType<ObstacleSpawner>();
