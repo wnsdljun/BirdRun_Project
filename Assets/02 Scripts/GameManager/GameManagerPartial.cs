@@ -6,6 +6,8 @@ public partial class GameManager : MonoBehaviour
 {
     public string potionType = "Small";
     private int lastSpawnTime = 0;
+    private int totalScore = 0;
+    private int fruitCount = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -17,25 +19,32 @@ public partial class GameManager : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if ((int)player.SurviveTime % 60 == 0 && lastSpawnTime != (int)player.SurviveTime)
+        player.SurviveTime += Time.fixedDeltaTime;
+        playTime += Time.fixedDeltaTime;
+
+        //15초마다 작은 회복 물약이 등장하고 60초에는 큰 회복 물약이 등장
+        if ((int)playTime % 60 == 0 && lastSpawnTime != (int)playTime)
         {
-            lastSpawnTime = (int)player.SurviveTime;
+            lastSpawnTime = (int)playTime;
             potionType = "Large";
             PotionSpawn();
         }
-        else if ((int)player.SurviveTime % 15 == 0 && lastSpawnTime != (int)player.SurviveTime)
+        else if ((int)playTime % 15 == 0 && lastSpawnTime != (int)playTime)
         {
-            lastSpawnTime = (int)player.SurviveTime;
+            lastSpawnTime = (int)playTime;
             potionType = "Small";
             PotionSpawn();
+
+            player.AddMoveSpeed = 2f;
         }
         else
+            //일반 지형 생성
             ObstacleSpawn();
     }
 
+    //지형 생성
     void ObstacleSpawn()
     {
-        //지형 생성
         //생성된 Obstacle이 20개 이하일 때만 추가로 생성
         if (obstacles.transform.childCount < 20)
         {
@@ -57,10 +66,21 @@ public partial class GameManager : MonoBehaviour
         }
     }
 
+    //포션 등장하는 지형 생성
     void PotionSpawn()
     {
         obstacles.SpawnPotion();
         obstacles.itemSpawner = obstacles.lastObstacle.GetComponent<ItemSpawner>();
         obstacles.itemSpawner.SpawnItem();
+    }
+
+    void AddScore(int score)
+    {
+        totalScore += score;
+    }
+
+    void AddFruitCount()
+    {
+        fruitCount++;
     }
 }
