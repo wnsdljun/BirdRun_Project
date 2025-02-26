@@ -9,7 +9,7 @@ public partial class GameManager : MonoBehaviour
     UIManager _UIManager;
 
     public ObstacleSpawner obstacles { get; private set; }
-
+    [SerializeField] bool isCutScenePlayDone = true;
     public bool isSpeedUp = false;
     private float playTime = 0;
     public float PlayTime
@@ -56,7 +56,6 @@ public partial class GameManager : MonoBehaviour
     }
 
     //캐릭터 선택과 관련한 부분
-    [SerializeField] private List<GameObject> playableCharacters = new List<GameObject>();
     public GameObject SelectedCharater;
 
 
@@ -122,7 +121,7 @@ public partial class GameManager : MonoBehaviour
     private IEnumerator LoadSceneCoroutine(string name)
     {
         float elapsed = 0f;
-        float waitTime = 5f;
+        float waitTime = 1.5f;
         
         if (SelectedCharater != null)
         {
@@ -135,7 +134,7 @@ public partial class GameManager : MonoBehaviour
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(name);
         asyncLoad.allowSceneActivation = false; //씬이 전부 로드되더라도 실행하지 않음.
         
-        while (elapsed <= waitTime)
+        while (elapsed <= waitTime && !isCutScenePlayDone)
         {
             elapsed += Time.deltaTime;
 
