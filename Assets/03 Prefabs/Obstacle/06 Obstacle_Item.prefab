@@ -180,6 +180,7 @@ MonoBehaviour:
   itemList:
   - {fileID: 4253762692725945257, guid: 5489da15a41773e4aaf85117b9381072, type: 3}
   - {fileID: 1338819871950912818, guid: 6ec9a84784e14b047a4485394f9ccebf, type: 3}
+  - {fileID: 4253762692725945257, guid: e74aaa80087892049aaa25ba644b8bdb, type: 3}
 --- !u!1 &8463484842319087485
 GameObject:
   m_ObjectHideFlags: 0
