@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     private static GameManager _instance;
-
+    UIManager _UIManager;
 
     public ObstacleSpawner obstacles { get; private set; }
 
@@ -90,73 +90,64 @@ public class GameManager : MonoBehaviour
         SceneManager.activeSceneChanged += SceneManager_activeSceneChanged; //씬 변경시 발생하는 이벤트 구독
         DontDestroyOnLoad(gameObject);
 
+        _UIManager = FindAnyObjectByType<UIManager>();
+        DontDestroyOnLoad(_UIManager.gameObject);
+
         obstacles = FindAnyObjectByType<ObstacleSpawner>();
     }
 
     #region 씬 변경과 관련한 부분. 씬에 따른 초기 설정 등.
-    //씬 변경 이벤트
-    private void SceneManager_activeSceneChanged(Scene prevScene, Scene newScene)
+    /// <summary>
+    /// 게임매니저에 씬을 변경하라는 명령.
+    /// </summary>
+    /// <param name="sceneName">씬 이름</param>
+    public void LoadScene(string sceneName)
     {
-        Debug.Log($"씬 변경됨: {prevScene.name} -> {newScene.name}");
+        //페이드 아웃 추가?
 
-        switch (newScene.name)
-        {
-            case "01 StartScene":
-                WhenSceneLoaded_StartScene();
-                break;
-            case "02 LoadScene":
-                WhenSceneLoaded_LoadScene();
-                break;
-            case "03 SelectScene":
-                WhenSceneLoaded_SelectScene();
-                break;
-            case "04 GameScene":
-                WhenSceneLoaded_GameScene();
-                break;
-            default:
-
-                break;
-        }
+        //로드씬 불러오기
+        SceneManager.LoadScene("02 LoadScene");
+        StartCoroutine(LoadSceneCoroutine(sceneName));
     }
 
-    private void WhenSceneLoaded_StartScene()
+    private IEnumerator LoadSceneCoroutine(string name)
     {
-
-    }
-    private void WhenSceneLoaded_LoadScene()
-    {
+        float elapsed = 0f;
+        float waitTime = 2f;
         if (SelectedCharater != null)
         {
-            if (SelectedCharater.name.Equals("Superba")) //극락조 오브젝트의 이름은 이걸로.
-            {
-                //로드중에 보여줄 컷씬 설정
-                SceneManager.LoadScene("SuperbaScene", LoadSceneMode.Additive);
-            }
-            else if (SelectedCharater.name.Equals("Montanus")) //참새 오브젝트의 이름은 이걸로.
-            {
-                //로드중에 보여줄 컷씬 설정
-                //SceneManager.LoadScene("MontanusScene", LoadSceneMode.Additive);
-
-            }
-
-
+            SceneManager.LoadScene($"{SelectedCharater.name}Scene", LoadSceneMode.Additive);
         }
         else
         {
             Debug.Log("선택된 새가 없습니다!");
         }
-    }
-    private void WhenSceneLoaded_SelectScene()
-    {
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(name);
+        asyncLoad.allowSceneActivation = false; //씬이 전부 로드되더라도 실행하지 않음.
 
+        while (elapsed <= waitTime)
+        {
+            elapsed += Time.deltaTime;
+
+            yield return null;
+        }
     }
-    private void WhenSceneLoaded_GameScene()
+    //씬 변경 이벤트.
+    //씬이 변경되었다면 새로 호출된 씬 이름을 확인하여 동작 수행.
+    private void SceneManager_activeSceneChanged(Scene prevScene, Scene newScene)
     {
-        //게임 씬 로드시 플레이어 스크립트가 붙은 오브젝트를 찾아
-        //-> 플레이어니까, 선택한 캐릭터를 생성해 플레이어 오브젝트를 부모로 설정.
-        _player = FindObjectOfType<Player>();
-        Instantiate(SelectedCharater, _player.transform);
+        Debug.Log($"씬 변경됨: {prevScene.name} -> {newScene.name}");
+
+        if (newScene.name.Equals("04 GameScene"))
+        {
+            //게임 씬 로드시 플레이어 스크립트가 붙은 오브젝트를 찾아
+            //-> 플레이어니까, 선택한 캐릭터를 생성해 플레이어 오브젝트를 부모로 설정.
+            _player = FindObjectOfType<Player>();
+            Instantiate(SelectedCharater, _player.transform);
+        }
     }
+
+
     #endregion
 
 
@@ -193,11 +184,4 @@ public class GameManager : MonoBehaviour
     }
 
 
-    private IEnumerator LoadSceneCoroutine()
-    {
-        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("04 GameScene");
-        asyncLoad.allowSceneActivation = false; //씬이 전부 로드되더라도 실행하지 않음.
-
-        yield return null;
-    }
 }
