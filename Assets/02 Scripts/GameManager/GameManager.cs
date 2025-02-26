@@ -91,7 +91,7 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
 
         _UIManager = FindAnyObjectByType<UIManager>();
-        DontDestroyOnLoad(_UIManager.gameObject);
+        //DontDestroyOnLoad(_UIManager.gameObject);
 
         obstacles = FindAnyObjectByType<ObstacleSpawner>();
     }
