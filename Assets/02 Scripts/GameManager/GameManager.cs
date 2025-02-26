@@ -51,7 +51,7 @@ public class GameManager : MonoBehaviour
     }
 
     //캐릭터 선택과 관련한 부분
-    [SerializeField] private readonly List<GameObject> playableCharacters = new List<GameObject>();
+    [SerializeField] private List<GameObject> playableCharacters = new List<GameObject>();
     private GameObject SelectedCharater;
 
 
