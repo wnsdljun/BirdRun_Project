@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SeedSpawner : ItemSpawner
 {
+
     public GameObject[] itemList;  //¾ÆÀÌÅÛ ¸®½ºÆ®
 
     public float sunSeedChance = 0.7f;  // ÀÏ¹Ý ¾¾¾Ñ È®·ü (70%)
@@ -29,13 +30,20 @@ public class SeedSpawner : ItemSpawner
     {
         float randomValue = Random.value;
 
-        if (randomValue < sunSeedChance)
-            return itemList[0];
-        else if (randomValue < sunSeedChance + rainbowSeedChance)
+        if (GameManager.Instance.isSpeedUp)
+        {
             return itemList[1];
-        else if (randomValue < sunSeedChance + rainbowSeedChance + FruitChance)
-            return itemList[2];
+        }
         else
-            return null;
+        {
+            if (randomValue < sunSeedChance)
+                return itemList[0];
+            else if (randomValue < sunSeedChance + rainbowSeedChance)
+                return itemList[1];
+            else if (randomValue < sunSeedChance + rainbowSeedChance + FruitChance)
+                return itemList[2];
+            else
+                return null;
+        }
     }
 }

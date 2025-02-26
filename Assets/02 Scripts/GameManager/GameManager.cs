@@ -10,6 +10,12 @@ public class GameManager : MonoBehaviour
     /// <summary>
     /// 외부에서 인스턴스에 접근하기 위한 프로퍼티
     /// </summary>
+    ///
+
+    public ObstacleSpawner obstacles { get; private set; }
+
+    public bool isSpeedUp = false;
+
     public static GameManager Instance
     {
         get
@@ -83,6 +89,8 @@ public class GameManager : MonoBehaviour
         }
         SceneManager.activeSceneChanged += SceneManager_activeSceneChanged; //씬 변경시 발생하는 이벤트 구독
         DontDestroyOnLoad(gameObject);
+
+        obstacles = FindAnyObjectByType<ObstacleSpawner>();
     }
 
     #region 씬 변경과 관련한 부분. 씬에 따른 초기 설정 등.
@@ -162,7 +170,26 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //지형 생성
+        //생성된 Obstacle이 20개 이하일 때만 추가로 생성
+        if (obstacles.transform.childCount < 20)
+        {
+            if (!obstacles.isObstacle && Random.value > 0.5f) // 50% 확률로 장애물 생성
+            {
+                obstacles.SpawnObstacle();
+            }
+            else
+            {
+                obstacles.SpawnGround();
+            }
 
+            //지형이 생성 됐을 경우에만 아이템 생성되도록 함
+            if (obstacles.isSpawner)
+            {
+                obstacles.itemSpawner = obstacles.lastObstacle.GetComponent<ItemSpawner>();
+                obstacles.itemSpawner.SpawnItem();
+            }
+        }
     }
 
 
