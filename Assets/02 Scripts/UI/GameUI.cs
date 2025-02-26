@@ -1,28 +1,38 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class GameUI : BaseUI
 {
-    [SerializeField] private TextMeshProUGUI waveText;
-    [SerializeField] private Slider hpSlider;
+    //[SerializeField] private Text waveText;
+    //[SerializeField] private Slider hpSlider;
+    [SerializeField] private Button pauseButton;
 
     private void Start()
     {
-        UpdateHPSlider(1);
+        //UpdateHPSlider(1);
     }
 
-    public void UpdateHPSlider(float percentage)
+    public override void Init(UIManager uiManager)
     {
-        hpSlider.value = percentage;
+        base.Init(uiManager);
+        pauseButton.onClick.AddListener(OnClickPauseButton);
     }
 
-    public void UpdateWaveText(int wave)
+    public void OnClickPauseButton()
     {
-        waveText.text = wave.ToString();
+        Time.timeScale = 0f;
     }
+
+    //public void UpdateHPSlider(float percentage)
+    //{
+    //    hpSlider.value = percentage;
+    //}
+
+    //public void UpdateWaveText(int wave)
+    //{
+    //    waveText.text = wave.ToString();
+    //}
 
     protected override UIState GetUIState()
     {

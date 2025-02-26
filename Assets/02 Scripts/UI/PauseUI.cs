@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -18,16 +16,16 @@ public class PauseUI : BaseUI
 
     public void OnClickKeepPlayButton()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        Time.timeScale = 0f;
     }
 
     public void OnClickExitButton()
     {
-        Application.Quit();
+        SceneManager.LoadScene("02 LoadScene");
     }
 
     protected override UIState GetUIState()
     {
-        return UIState.End;
+        return UIState.Pause;
     }
 }

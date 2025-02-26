@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public enum UIState
@@ -24,7 +21,7 @@ public class UIManager : MonoBehaviour
         startUI = GetComponentInChildren<StartUI>(true);
         startUI.Init(this);
         gameUI = GetComponentInChildren<GameUI>(true);
-        //gameUI.Init(this);
+        gameUI.Init(this);
         pauseUI = GetComponentInChildren<PauseUI>(true);
         pauseUI.Init(this);
         endUI = GetComponentInChildren<EndUI>(true);
@@ -41,6 +38,11 @@ public class UIManager : MonoBehaviour
     public void SetEndGame()
     {
         ChangeState(UIState.End);
+    }
+
+    public void SetPauseGame()
+    {
+        ChangeState(UIState.Pause);
     }
 
     //public void ChangeWave(int waveIndex)
