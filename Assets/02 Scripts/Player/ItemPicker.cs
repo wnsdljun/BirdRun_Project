@@ -19,6 +19,15 @@ public class ItemPicker : MonoBehaviour
         }
     }
 
+    //아이템 줍는 범위에 들어왔다 나가면 코루틴 멈추기
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Item"))
+        {
+
+        }
+    }
+
     public IEnumerator PickupItem(GameObject item)
     {
         if (item == null) yield break; //아이템이 삭제되어 없다면

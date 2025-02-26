@@ -96,6 +96,15 @@ public class Player : MonoBehaviour
         speedBoostDuration = duration;
         Debug.Log($"스피드업 for [{duration}]");
     }
+    public void UseMagnet(float duration)
+    {
+
+    }
+    private IEnumerator ApplyMagnetEffect()
+    {
+
+        return null;
+    }
     #endregion
 
 
