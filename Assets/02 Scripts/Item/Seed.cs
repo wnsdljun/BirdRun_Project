@@ -16,6 +16,6 @@ public class Seed : MonoBehaviour, IItemEffect
 
     public void ApplyEffect(Player player)
     {
-
+        GameManager.Instance.AddScore(score);
     }
 }

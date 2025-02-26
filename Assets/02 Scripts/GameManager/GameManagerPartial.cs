@@ -74,12 +74,12 @@ public partial class GameManager : MonoBehaviour
         obstacles.itemSpawner.SpawnItem();
     }
 
-    void AddScore(int score)
+    public void AddScore(int score)
     {
         totalScore += score;
     }
 
-    void AddFruitCount()
+    public void AddFruitCount()
     {
         fruitCount++;
     }
