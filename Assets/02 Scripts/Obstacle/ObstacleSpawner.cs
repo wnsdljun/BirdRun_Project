@@ -10,37 +10,18 @@ public class ObstacleSpawner : MonoBehaviour
     public GameObject ground;
     public Transform lastObstacle;
 
-    private ItemSpawner itemSpawner;
+    [HideInInspector] public ItemSpawner itemSpawner;
 
     private int groundCnt = 0;
-    private bool isObstacle = false;
-    private bool isSpawner = true;
+    [HideInInspector] public bool isObstacle = false;
+    [HideInInspector] public bool isSpawner = true;
 
     void Update()
     {
-        //생성된 Obstacle이 20개 이하일 때만 추가로 생성
-        if (transform.childCount < 20)
-        {
-            if (!isObstacle && Random.value > 0.5f) // 50% 확률로 장애물 생성
-            {
-                SpawnObstacle();
-            }
-            else
-            {
-                SpawnGround();
-            }
-
-            //지형이 생성 됐을 경우에만 아이템 생성되도록 함
-            if (isSpawner)
-            {
-                itemSpawner = lastObstacle.GetComponent<ItemSpawner>();
-                itemSpawner.SpawnItem();
-            }
-        }
     }
 
     //바닥 생성
-    void SpawnGround()
+    public void SpawnGround()
     {
         Vector3 newPosition = lastObstacle.position + new Vector3(3f, 0, 0);
         GameObject newGround = Instantiate(ground, newPosition, Quaternion.identity);
@@ -54,7 +35,7 @@ public class ObstacleSpawner : MonoBehaviour
     }
 
     //장애물 생성
-    void SpawnObstacle()
+    public void SpawnObstacle()
     {
         //장애물이 연속으로 생성되지 않도록 조건 처리
         if (groundCnt < 2)
