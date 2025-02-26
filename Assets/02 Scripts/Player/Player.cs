@@ -7,8 +7,23 @@ public class Player : MonoBehaviour
     Rigidbody2D _rigidbody;
     Animator _animator;
     BoxCollider2D _boxCollider;
+
     [SerializeField] private float moveSpeed = 3f;
+
+    public float AddMoveSpeed
+    {
+        set
+        {
+            moveSpeed += value;
+        }
+    }
     [SerializeField] private float collisionPenalty = 5f; //충돌 시 감소시킬 시간
+
+    private float playTime = 0;
+    public float PlayTime
+    {
+        get => playTime;
+    }
 
     #region 점프 관련 로직
     //Update에서 입력을 받고 
@@ -85,7 +100,7 @@ public class Player : MonoBehaviour
     #region 아이템 사용 로직은 여기에
     public void Heal(float amount)
     {
-        SurviveTime -= amount;
+        SurviveTime -= SurviveTime * amount;
         Debug.Log($"생존시간 \"{amount}\" 회복. total: {SurviveTime}");
     }
     private float speedBoost = 0f;
@@ -143,10 +158,19 @@ public class Player : MonoBehaviour
     {
         //생존시간 로직
         SurviveTime += Time.fixedDeltaTime;
+        playTime += Time.fixedDeltaTime;
         //이동속도 로직
         _rigidbody.velocity = new Vector2(moveSpeed + speedBoost, _rigidbody.velocity.y);
-        if (speedBoostDuration >= 0) speedBoostDuration -= Time.fixedDeltaTime;
-        else speedBoost = 0f;
+        if (speedBoostDuration >= 0)
+        {
+            GameManager.Instance.isSpeedUp = true;
+            speedBoostDuration -= Time.fixedDeltaTime;
+        }
+        else
+        {
+            GameManager.Instance.isSpeedUp = false;
+            speedBoost = 0f;
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
