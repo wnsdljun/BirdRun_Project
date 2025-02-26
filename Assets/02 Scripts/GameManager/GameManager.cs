@@ -7,15 +7,15 @@ public class GameManager : MonoBehaviour
 {
     private static GameManager _instance;
 
-    /// <summary>
-    /// 외부에서 인스턴스에 접근하기 위한 프로퍼티
-    /// </summary>
-    ///
 
     public ObstacleSpawner obstacles { get; private set; }
 
     public bool isSpeedUp = false;
 
+    /// <summary>
+    /// 외부에서 인스턴스에 접근하기 위한 프로퍼티
+    /// </summary>
+    ///
     public static GameManager Instance
     {
         get
