@@ -11,6 +11,11 @@ public partial class GameManager : MonoBehaviour
     public ObstacleSpawner obstacles { get; private set; }
 
     public bool isSpeedUp = false;
+    private float playTime = 0;
+    public float PlayTime
+    {
+        get => playTime;
+    }
 
     /// <summary>
     /// 외부에서 인스턴스에 접근하기 위한 프로퍼티
