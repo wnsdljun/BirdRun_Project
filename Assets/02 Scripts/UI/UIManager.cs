@@ -45,6 +45,26 @@ public class UIManager : MonoBehaviour
         ChangeState(UIState.Pause);
     }
 
+    public void ChangePlayerHp(float playerHP)
+    {
+        gameUI.UpdateHPBar(playerHP);
+    }
+
+    public void ChangeScore(int score)
+    {
+        gameUI.UpdateScore(score);
+    }
+
+    public void ChangeFruit(int score)
+    {
+        gameUI.UpdateFruit(score);
+    }
+
+    public void DisplaySpeedUpText()
+    {
+        gameUI.ShowSpeedUpText();
+    }
+
     //public void ChangeWave(int waveIndex)
     //{
     //    gameUI.UpdateWaveText(waveIndex);

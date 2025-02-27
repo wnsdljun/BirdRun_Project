@@ -69,13 +69,13 @@ public class Card : MonoBehaviour
 
     IEnumerator UnavailableCardClick()
     {
-        float time = 1f;
+        float time = 0.5f;
         float elapsed = 0f;
-
+        float range = 0.3f;
         while (elapsed < time)
         {
             elapsed += Time.deltaTime;
-            transform.position = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)) + originPos;
+            transform.position = new Vector2(Random.Range(-range, range), 0) + originPos;
             if (!(elapsed < time))
             {
                 transform.position = originPos;

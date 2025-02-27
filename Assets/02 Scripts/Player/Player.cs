@@ -137,7 +137,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
-        _animator = GetComponent<Animator>();
+        _animator = GetComponentInChildren<Animator>();
 
         #region 슬라이딩 할때 콜라이더 크기 바꿔주는 부분. 크기를 불러와 저장한다.
         _boxCollider = GetComponent<BoxCollider2D>();
