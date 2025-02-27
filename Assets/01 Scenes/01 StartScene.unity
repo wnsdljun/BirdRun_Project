@@ -2527,6 +2527,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3fc122a87ea24649b8d2a712adf86f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainSceneAClip: {fileID: 8300000, guid: e74394d3145eee74bb745b342a782d65, type: 3}
+  selectSceneAClip: {fileID: 8300000, guid: 8cfcb97c590d8b14f908c1ed12abda67, type: 3}
+  gameSceneAClip: {fileID: 8300000, guid: 8456bd04653f3a547b64d8d9688de057, type: 3}
 --- !u!4 &1587349588
 Transform:
   m_ObjectHideFlags: 0
@@ -3017,7 +3020,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c757625103e0f442b91f92b289c1317, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _UIManager: {fileID: 0}
   isCutScenePlayDone: 1
   isSpeedUp: 0
   SelectedCharater: {fileID: 0}
