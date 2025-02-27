@@ -154,11 +154,20 @@ public partial class GameManager : MonoBehaviour
 
         if (newScene.name.Equals("04 GameScene"))
         {
+            _UIManager.SetPlayGame();
             //게임 씬 로드시 플레이어 스크립트가 붙은 오브젝트를 찾아
             //-> 플레이어니까, 선택한 캐릭터를 생성해 플레이어 오브젝트를 부모로 설정.
             _player = FindObjectOfType<Player>();
             Instantiate(SelectedCharater, _player.transform);
             obstacles = FindAnyObjectByType<ObstacleSpawner>();
+        }
+        if (newScene.name.Equals("02 LoadScene") || newScene.name.Equals("03 SelectScene"))
+        {
+            _UIManager.SetUIOff();
+        }
+        if (newScene.name.Equals("01 StartScene"))
+        {
+            _UIManager.SetStartGame();
         }
     }
     private IEnumerator PlayCutScene()

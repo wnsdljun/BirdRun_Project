@@ -21,7 +21,7 @@ public class GameUI : BaseUI
     public override void Init(UIManager uiManager)
     {
         base.Init(uiManager);
-        pauseButton.onClick.AddListener(OnClickPauseButton);
+        //pauseButton.onClick.AddListener(OnClickPauseButton);
     }
 
     public void OnClickPauseButton()

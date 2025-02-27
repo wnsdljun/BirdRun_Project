@@ -1988,6 +1988,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseButton: {fileID: 0}
+  hpBar: {fileID: 1927855213}
+  scoreText: {fileID: 1100646974}
+  fruitText: {fileID: 1715799834}
+  speedUpText: {fileID: 1890593569}
 --- !u!1 &1512245367
 GameObject:
   m_ObjectHideFlags: 0
@@ -2665,10 +2669,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c757625103e0f442b91f92b289c1317, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isCutScenePlayDone: 1
   isSpeedUp: 0
-  playableCharacters:
-  - {fileID: 5640271970005912696, guid: f1e250afa26415d4b8f73fd62d02ba1b, type: 3}
-  - {fileID: 3325080371262525738, guid: 4127be67d625b73469b207bed7c237b3, type: 3}
+  SelectedCharater: {fileID: 0}
+  potionType: Small
 --- !u!4 &6363850542845427311
 Transform:
   m_ObjectHideFlags: 0

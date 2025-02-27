@@ -6,6 +6,7 @@ public enum UIState
     Game,
     Pause,
     End,
+    Empty
 }
 
 public class UIManager : MonoBehaviour
@@ -22,14 +23,17 @@ public class UIManager : MonoBehaviour
         startUI.Init(this);
         gameUI = GetComponentInChildren<GameUI>(true);
         gameUI.Init(this);
-        pauseUI = GetComponentInChildren<PauseUI>(true);
-        pauseUI.Init(this);
+        //pauseUI = GetComponentInChildren<PauseUI>(true);
+        //pauseUI.Init(this);
         endUI = GetComponentInChildren<EndUI>(true);
         endUI.Init(this);
 
         ChangeState(UIState.Start);
     }
-
+    public void SetStartGame()
+    {
+        ChangeState(UIState.Start);
+    }
     public void SetPlayGame()
     {
         ChangeState(UIState.Game);
@@ -44,7 +48,10 @@ public class UIManager : MonoBehaviour
     {
         ChangeState(UIState.Pause);
     }
-
+    public void SetUIOff()
+    {
+        ChangeState(UIState.Empty);
+    }
     public void ChangePlayerHp(float playerHP)
     {
         gameUI.UpdateHPBar(playerHP);
@@ -80,7 +87,7 @@ public class UIManager : MonoBehaviour
         currentState = state;
         startUI.SetActive(currentState);
         gameUI.SetActive(currentState);
-        pauseUI.SetActive(currentState);
-        endUI.SetActive(currentState);
+        //pauseUI.SetActive(currentState);
+        //endUI.SetActive(currentState);
     }
 }
