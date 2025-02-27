@@ -52,19 +52,9 @@ public class GameUI : BaseUI
     IEnumerator SpeedUpTextCoroutine()
     {
         speedUpText.gameObject.SetActive(true);
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(GetComponentInChildren<Animator>().runtimeAnimatorController.animationClips[0].length);
         speedUpText.gameObject.SetActive(false);
     }
-
-    //public void UpdateHPSlider(float percentage)
-    //{
-    //    hpSlider.value = percentage;
-    //}
-
-    //public void UpdateWaveText(int wave)
-    //{
-    //    waveText.text = wave.ToString();
-    //}
 
     protected override UIState GetUIState()
     {

@@ -72,22 +72,12 @@ public class UIManager : MonoBehaviour
         gameUI.ShowSpeedUpText();
     }
 
-    //public void ChangeWave(int waveIndex)
-    //{
-    //    gameUI.UpdateWaveText(waveIndex);
-    //}
-
-    //public void ChangePlayerHP(float currentHP, float maxHP)
-    //{
-    //    gameUI.UpdateHPSlider(currentHP / maxHP);
-    //}
-
     public void ChangeState(UIState state)
     {
         currentState = state;
         startUI.SetActive(currentState);
         gameUI.SetActive(currentState);
         //pauseUI.SetActive(currentState);
-        //endUI.SetActive(currentState);
+        endUI.SetActive(currentState);
     }
 }

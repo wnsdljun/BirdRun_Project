@@ -16,12 +16,15 @@ public class EndUI : BaseUI
 
     public void OnClickRestartButton()
     {
+        GameManager.Instance.ResetGameManager();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void OnClickExitButton()
     {
-        SceneManager.LoadScene("02 LoadScene");
+        GameManager.Instance.ResetGameManager();
+        GameManager.Instance.SelectedCharater = null;
+        GameManager.Instance.LoadScene("02 LoadScene");
     }
 
     protected override UIState GetUIState()

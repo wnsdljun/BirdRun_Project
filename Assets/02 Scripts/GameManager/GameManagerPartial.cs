@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public partial class GameManager : MonoBehaviour
@@ -90,5 +88,13 @@ public partial class GameManager : MonoBehaviour
     {
         fruitCount++;
         _UIManager.ChangeFruit(fruitCount);
+    }
+
+    public void ResetGameManager()
+    {
+        playTime = 0f;
+        lastSpawnTime = 0;
+        totalScore = 0;
+        fruitCount = 0;
     }
 }

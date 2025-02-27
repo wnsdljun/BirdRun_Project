@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public partial class GameManager : MonoBehaviour
 {
     private static GameManager _instance;
-    UIManager _UIManager;
+    public UIManager _UIManager;
 
     public ObstacleSpawner obstacles { get; private set; }
     [SerializeField] bool isCutScenePlayDone = true;
