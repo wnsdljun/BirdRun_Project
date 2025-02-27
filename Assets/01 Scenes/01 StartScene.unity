@@ -576,7 +576,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &250342646
 RectTransform:
   m_ObjectHideFlags: 0
@@ -617,6 +617,8 @@ MonoBehaviour:
   endButton: {fileID: 1309014493}
   seedScore: {fileID: 1166150906}
   fruitScore: {fileID: 207510029}
+  montanusEnd: {fileID: 1656685016}
+  superbaEnd: {fileID: 575254984}
 --- !u!1 &420208850
 GameObject:
   m_ObjectHideFlags: 0
@@ -2674,7 +2676,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1656685015
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2898,7 +2900,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1921323059
 RectTransform:
   m_ObjectHideFlags: 0

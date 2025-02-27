@@ -1,3 +1,4 @@
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -8,6 +9,8 @@ public class EndUI : BaseUI
     [SerializeField] private Button endButton;
     [SerializeField] private Text seedScore;
     [SerializeField] private Text fruitScore;
+    [SerializeField] private Image montanusEnd;
+    [SerializeField] private Image superbaEnd;
 
     public override void Init(UIManager uiManager)
     {
@@ -33,6 +36,17 @@ public class EndUI : BaseUI
 
     public void SetUI(int score, int fruit)
     {
+        if (GameManager.Instance.SelectedCharater.name == "Montanus")
+        {
+            montanusEnd.gameObject.SetActive(true);
+            superbaEnd.gameObject.SetActive(false);
+        }
+        else if (GameManager.Instance.SelectedCharater.name == "Superba")
+        {
+            montanusEnd.gameObject.SetActive(false);
+            superbaEnd.gameObject.SetActive(true);
+        }
+
         seedScore.text = score.ToString("N0");
         fruitScore.text = fruit.ToString("N0");
     }
