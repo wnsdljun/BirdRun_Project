@@ -126,8 +126,9 @@ public partial class GameManager : MonoBehaviour
         
         if (SelectedCharater != null)
         {
-            SceneManager.LoadSceneAsync($"{SelectedCharater.name}Scene", LoadSceneMode.Additive);
-            yield return null;
+            yield return SceneManager.LoadSceneAsync($"{SelectedCharater.name}Scene", LoadSceneMode.Additive);
+            
+            StartCoroutine(PlayCutScene());
         }
         else
         {
@@ -160,7 +161,17 @@ public partial class GameManager : MonoBehaviour
             obstacles = FindAnyObjectByType<ObstacleSpawner>();
         }
     }
+    private IEnumerator PlayCutScene()
+    {
+        isCutScenePlayDone = false;
+        yield return null;
+        GameObject cutsceneobj = GameObject.Find($"{SelectedCharater.name}Cut");
+        float playTime = cutsceneobj.GetComponent<Animator>().runtimeAnimatorController.animationClips[0].length;
 
+        yield return new WaitForSeconds(playTime);
+        isCutScenePlayDone = true;
+
+    }
 
     #endregion
 
