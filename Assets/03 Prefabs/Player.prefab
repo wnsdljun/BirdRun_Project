@@ -47,10 +47,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f5b1d64a0426e14696dd60a78d003d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 3
+  moveSpeed: 10
   collisionPenalty: 5
-  jumpPower: 20
-  initialSurviveTime: 600
+  jumpPower: 25
+  initialSurviveTime: 120
 --- !u!61 &8479613610193022733
 BoxCollider2D:
   m_ObjectHideFlags: 0

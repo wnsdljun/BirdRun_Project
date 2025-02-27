@@ -95,10 +95,9 @@ public partial class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
 
         _UIManager = FindAnyObjectByType<UIManager>();
-        player = FindAnyObjectByType<Player>();
-        //DontDestroyOnLoad(_UIManager.gameObject);
+        DontDestroyOnLoad(_UIManager.gameObject);
 
-        obstacles = FindAnyObjectByType<ObstacleSpawner>();
+        
     }
 
     #region 씬 변경과 관련한 부분. 씬에 따른 초기 설정 등.
@@ -154,6 +153,7 @@ public partial class GameManager : MonoBehaviour
             //-> 플레이어니까, 선택한 캐릭터를 생성해 플레이어 오브젝트를 부모로 설정.
             _player = FindObjectOfType<Player>();
             Instantiate(SelectedCharater, _player.transform);
+            obstacles = FindAnyObjectByType<ObstacleSpawner>();
         }
     }
 

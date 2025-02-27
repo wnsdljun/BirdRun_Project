@@ -8,8 +8,8 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 1
-    path: Assets/01 Scenes/04 GameScene.unity
+  - enabled: 0
+    path: Assets/01 Scenes/04 Gamesdcene.unity
     guid: c16bc333b1da8c64bbf52070d89b3b86
   - enabled: 1
     path: Assets/01 Scenes/01 StartScene.unity
@@ -20,4 +20,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/01 Scenes/03 SelectScene.unity
     guid: cf4e464991c936c4e9d793c681892da0
+  - enabled: 1
+    path: Assets/01 Scenes/04 GameScene.unity
+    guid: 193ec2db91f268041b2e1360035b35a6
+  - enabled: 1
+    path: Assets/01 Scenes/SuperbaScene.unity
+    guid: 2661795c72243ac47978ffe99e748f95
   m_configObjects: {}
