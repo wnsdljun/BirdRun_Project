@@ -80,6 +80,7 @@ public class Player : MonoBehaviour
     #region 하트 관련 로직은 여기에
     [SerializeField] private float initialSurviveTime;//생존 시간- 에디터에서 수정
     private float surviveTime = 0f; //이 값이 증가하며 초기 생존 시간 값보다 크거나 같게되면 게임오버
+    private float obstacleTime = 0f;
     public float SurviveTime
     {
         get => surviveTime;
@@ -87,7 +88,14 @@ public class Player : MonoBehaviour
         {
             //하트 물약을 많이 먹어서 생존시간이 음수로 내려가는 경우?
             surviveTime = value;
-            if (surviveTime >= initialSurviveTime) TimeOver();
+            if (surviveTime + obstacleTime >= initialSurviveTime) TimeOver();
+        }
+    }
+    public float HPPercent
+    {
+        get
+        {
+            return (surviveTime + obstacleTime) / initialSurviveTime;
         }
     }
 
@@ -196,8 +204,7 @@ public class Player : MonoBehaviour
         {
             if (speedBoostDuration <= 0) //가속중이 아니면
             {
-                Debug.Log($"장애물 충돌, 생존시간 증가 현재 {SurviveTime}");
-                SurviveTime += collisionPenalty;
+                obstacleTime += collisionPenalty;
             }
             else //가속중일때
             {
@@ -208,7 +215,7 @@ public class Player : MonoBehaviour
         //낙사
         if (collision.CompareTag("Finish"))
         {
-            SurviveTime = initialSurviveTime;
+            TimeOver();
         }
     }
 
