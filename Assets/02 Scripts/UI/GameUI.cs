@@ -36,12 +36,12 @@ public class GameUI : BaseUI
 
     public void UpdateScore(int score)
     {
-        scoreText.text = score.ToString();
+        scoreText.text = score.ToString("N0");
     }
 
     public void UpdateFruit(int score)
     {
-        fruitText.text = score.ToString();
+        fruitText.text = score.ToString("N0");
     }
 
     public void ShowSpeedUpText()
