@@ -49,6 +49,12 @@ public class GameUI : BaseUI
         StartCoroutine(SpeedUpTextCoroutine());
     }
 
+    public void ResetUI()
+    {
+        scoreText.text = "0";
+        fruitText.text = "0";
+    }
+
     IEnumerator SpeedUpTextCoroutine()
     {
         speedUpText.gameObject.SetActive(true);

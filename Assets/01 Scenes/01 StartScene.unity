@@ -615,6 +615,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   restartButton: {fileID: 438557278}
   endButton: {fileID: 1309014493}
+  seedScore: {fileID: 1166150906}
+  fruitScore: {fileID: 207510029}
 --- !u!1 &420208850
 GameObject:
   m_ObjectHideFlags: 0
@@ -2874,10 +2876,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c757625103e0f442b91f92b289c1317, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _UIManager: {fileID: 0}
   isCutScenePlayDone: 1
   isSpeedUp: 0
   SelectedCharater: {fileID: 0}
   potionType: Small
+  totalScore: 0
+  fruitCount: 0
 --- !u!4 &6363850542845427311
 Transform:
   m_ObjectHideFlags: 0

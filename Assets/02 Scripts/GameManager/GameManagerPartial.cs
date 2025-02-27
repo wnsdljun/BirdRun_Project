@@ -4,8 +4,8 @@ public partial class GameManager : MonoBehaviour
 {
     public string potionType = "Small";
     private int lastSpawnTime = 0;
-    private int totalScore = 0;
-    private int fruitCount = 0;
+    public int totalScore = 0;
+    public int fruitCount = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -96,5 +96,6 @@ public partial class GameManager : MonoBehaviour
         lastSpawnTime = 0;
         totalScore = 0;
         fruitCount = 0;
+        _UIManager.ResetUI();
     }
 }

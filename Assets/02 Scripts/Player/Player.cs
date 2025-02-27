@@ -101,7 +101,7 @@ public class Player : MonoBehaviour
 
     private void TimeOver()
     {
-        GameManager.Instance._UIManager.SetEndGame();
+        GameManager.Instance._UIManager.SetEndGame(GameManager.Instance.totalScore, GameManager.Instance.fruitCount);
         Debug.Log("½Ã°£ ´Ù µÆ´Ù");
         Time.timeScale = 0;
     }

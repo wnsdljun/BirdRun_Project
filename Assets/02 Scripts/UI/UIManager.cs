@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 
 public enum UIState
 {
@@ -39,8 +40,9 @@ public class UIManager : MonoBehaviour
         ChangeState(UIState.Game);
     }
 
-    public void SetEndGame()
+    public void SetEndGame(int seedScore, int fruitScore)
     {
+        endUI.SetUI(seedScore, fruitScore);
         ChangeState(UIState.End);
     }
 
@@ -70,6 +72,12 @@ public class UIManager : MonoBehaviour
     public void DisplaySpeedUpText()
     {
         gameUI.ShowSpeedUpText();
+    }
+
+    public void ResetUI()
+    {
+        gameUI.ResetUI();
+        endUI.ResetUI();
     }
 
     public void ChangeState(UIState state)
