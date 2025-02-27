@@ -45,7 +45,8 @@ public partial class GameManager : MonoBehaviour
         {
             if (_player == null)
             {
-                Debug.Log("아직 플레이어 오브젝트 생성 전입니다.");
+                //성능저하 의심?
+                //Debug.Log("아직 플레이어 오브젝트 생성 전입니다.");
             }
             return _player;
         }

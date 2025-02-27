@@ -19,27 +19,30 @@ public partial class GameManager : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        player.SurviveTime += Time.fixedDeltaTime;
-        playTime += Time.fixedDeltaTime;
-
-        //15초마다 작은 회복 물약이 등장하고 60초에는 큰 회복 물약이 등장
-        if ((int)playTime % 60 == 0 && lastSpawnTime != (int)playTime)
+        if (player != null)
         {
-            lastSpawnTime = (int)playTime;
-            potionType = "Large";
-            PotionSpawn();
-        }
-        else if ((int)playTime % 15 == 0 && lastSpawnTime != (int)playTime)
-        {
-            lastSpawnTime = (int)playTime;
-            potionType = "Small";
-            PotionSpawn();
+            player.SurviveTime += Time.fixedDeltaTime;
+            playTime += Time.fixedDeltaTime;
 
-            player.AddMoveSpeed = 2f;
+            //15초마다 작은 회복 물약이 등장하고 60초에는 큰 회복 물약이 등장
+            if ((int)playTime % 60 == 0 && lastSpawnTime != (int)playTime)
+            {
+                lastSpawnTime = (int)playTime;
+                potionType = "Large";
+                PotionSpawn();
+            }
+            else if ((int)playTime % 15 == 0 && lastSpawnTime != (int)playTime)
+            {
+                lastSpawnTime = (int)playTime;
+                potionType = "Small";
+                PotionSpawn();
+
+                player.AddMoveSpeed = 2f;
+            }
+            else
+                //일반 지형 생성
+                ObstacleSpawn();
         }
-        else
-            //일반 지형 생성
-            ObstacleSpawn();
     }
 
     //지형 생성
