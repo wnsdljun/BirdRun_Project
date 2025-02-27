@@ -91,6 +91,7 @@ public partial class GameManager : MonoBehaviour
         else if (_instance != this)
         {
             Destroy(gameObject);
+            return;
         }
         SceneManager.activeSceneChanged += SceneManager_activeSceneChanged; //씬 변경시 발생하는 이벤트 구독
         DontDestroyOnLoad(gameObject);
