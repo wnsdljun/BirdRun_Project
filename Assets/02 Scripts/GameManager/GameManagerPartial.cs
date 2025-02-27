@@ -36,13 +36,13 @@ public partial class GameManager : MonoBehaviour
                 PotionSpawn();
 
                 player.AddMoveSpeed = 2f;
-                _UIManager.DisplaySpeedUpText();
+                UIManager.Instance.DisplaySpeedUpText();
             }
             else
                 //일반 지형 생성
                 ObstacleSpawn();
 
-            _UIManager.ChangePlayerHp(player.HPPercent);
+            UIManager.Instance.ChangePlayerHp(player.HPPercent);
         }
     }
 
@@ -81,13 +81,13 @@ public partial class GameManager : MonoBehaviour
     public void AddScore(int score)
     {
         totalScore += score;
-        _UIManager.ChangeScore(totalScore);
+        UIManager.Instance.ChangeScore(totalScore);
     }
 
     public void AddFruitCount()
     {
         fruitCount++;
-        _UIManager.ChangeFruit(fruitCount);
+        UIManager.Instance.ChangeFruit(fruitCount);
     }
 
     public void ResetGameManager()
@@ -96,6 +96,6 @@ public partial class GameManager : MonoBehaviour
         lastSpawnTime = 0;
         totalScore = 0;
         fruitCount = 0;
-        _UIManager.ResetUI();
+        UIManager.Instance.ResetUI();
     }
 }

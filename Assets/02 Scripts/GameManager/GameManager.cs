@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public partial class GameManager : MonoBehaviour
 {
     private static GameManager _instance;
-    public UIManager _UIManager;
+
 
     public ObstacleSpawner obstacles { get; private set; }
     [SerializeField] bool isCutScenePlayDone = true;
@@ -94,10 +94,6 @@ public partial class GameManager : MonoBehaviour
         }
         SceneManager.activeSceneChanged += SceneManager_activeSceneChanged; //씬 변경시 발생하는 이벤트 구독
         DontDestroyOnLoad(gameObject);
-
-        _UIManager = FindAnyObjectByType<UIManager>();
-        DontDestroyOnLoad(_UIManager.gameObject);
-
     }
 
     #region 씬 변경과 관련한 부분. 씬에 따른 초기 설정 등.
@@ -153,7 +149,7 @@ public partial class GameManager : MonoBehaviour
 
         if (newScene.name.Equals("04 GameScene"))
         {
-            _UIManager.SetPlayGame();
+            UIManager.Instance.SetPlayGame();
             //게임 씬 로드시 플레이어 스크립트가 붙은 오브젝트를 찾아
             //-> 플레이어니까, 선택한 캐릭터를 생성해 플레이어 오브젝트를 부모로 설정.
             _player = FindObjectOfType<Player>();
@@ -162,11 +158,11 @@ public partial class GameManager : MonoBehaviour
         }
         if (newScene.name.Equals("02 LoadScene") || newScene.name.Equals("03 SelectScene"))
         {
-            _UIManager.SetUIOff();
+            UIManager.Instance.SetUIOff();
         }
         if (newScene.name.Equals("01 StartScene"))
         {
-            _UIManager.SetStartGame();
+            UIManager.Instance.SetStartGame();
         }
     }
     private IEnumerator PlayCutScene()

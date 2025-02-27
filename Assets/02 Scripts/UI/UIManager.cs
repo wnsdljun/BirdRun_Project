@@ -12,6 +12,24 @@ public enum UIState
 
 public class UIManager : MonoBehaviour
 {
+    private static UIManager instance;
+    public static UIManager Instance
+    {
+        get
+        {
+            if (!instance)
+            {
+                instance = FindObjectOfType(typeof(UIManager)) as UIManager;
+
+                if (instance == null)
+                {
+                    Debug.Log("ΩÃ±€≈Ê ¿ŒΩ∫≈œΩ∫ æ¯¿Ω");
+                }
+            }
+            return instance;
+        }
+    }
+
     StartUI startUI;
     GameUI gameUI;
     PauseUI pauseUI;
@@ -20,6 +38,17 @@ public class UIManager : MonoBehaviour
 
     private void Awake()
     {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else if (instance != null)
+        {
+            Destroy(gameObject);
+            return; 
+        }
+        DontDestroyOnLoad(gameObject);
+
         startUI = GetComponentInChildren<StartUI>(true);
         startUI.Init(this);
         gameUI = GetComponentInChildren<GameUI>(true);
