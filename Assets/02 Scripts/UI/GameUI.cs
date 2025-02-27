@@ -7,7 +7,7 @@ public class GameUI : BaseUI
 {
     //[SerializeField] private Text waveText;
     //[SerializeField] private Slider hpSlider;
-    [SerializeField] private Button pauseButton;
+    //[SerializeField] private Button pauseButton;
     [SerializeField] private Image hpBar;
     [SerializeField] private Text scoreText;
     [SerializeField] private Text fruitText;
