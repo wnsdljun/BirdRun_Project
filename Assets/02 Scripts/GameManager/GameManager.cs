@@ -97,8 +97,7 @@ public partial class GameManager : MonoBehaviour
 
         _UIManager = FindAnyObjectByType<UIManager>();
         DontDestroyOnLoad(_UIManager.gameObject);
-        DontDestroyOnLoad(GameObject.Find("EventSystem"));
-        
+
     }
 
     #region 씬 변경과 관련한 부분. 씬에 따른 초기 설정 등.
