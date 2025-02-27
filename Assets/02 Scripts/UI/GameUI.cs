@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,6 +8,10 @@ public class GameUI : BaseUI
     //[SerializeField] private Text waveText;
     //[SerializeField] private Slider hpSlider;
     [SerializeField] private Button pauseButton;
+    [SerializeField] private Image hpBar;
+    [SerializeField] private Text scoreText;
+    [SerializeField] private Text fruitText;
+    [SerializeField] private Text speedUpText;
 
     private void Start()
     {
@@ -22,6 +27,33 @@ public class GameUI : BaseUI
     public void OnClickPauseButton()
     {
         Time.timeScale = 0f;
+    }
+
+    public void UpdateHPBar(float playerHP)
+    {
+        hpBar.fillAmount = 1 - playerHP;
+    }
+
+    public void UpdateScore(int score)
+    {
+        scoreText.text = score.ToString();
+    }
+
+    public void UpdateFruit(int score)
+    {
+        fruitText.text = score.ToString();
+    }
+
+    public void ShowSpeedUpText()
+    {
+        StartCoroutine(SpeedUpTextCoroutine());
+    }
+
+    IEnumerator SpeedUpTextCoroutine()
+    {
+        speedUpText.gameObject.SetActive(true);
+        yield return new WaitForSeconds(1f);
+        speedUpText.gameObject.SetActive(false);
     }
 
     //public void UpdateHPSlider(float percentage)

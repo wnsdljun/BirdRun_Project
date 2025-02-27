@@ -38,10 +38,13 @@ public partial class GameManager : MonoBehaviour
                 PotionSpawn();
 
                 player.AddMoveSpeed = 2f;
+                _UIManager.DisplaySpeedUpText();
             }
             else
                 //일반 지형 생성
                 ObstacleSpawn();
+
+            _UIManager.ChangePlayerHp(player.HPPercent);
         }
     }
 
@@ -80,10 +83,12 @@ public partial class GameManager : MonoBehaviour
     public void AddScore(int score)
     {
         totalScore += score;
+        _UIManager.ChangeScore(totalScore);
     }
 
     public void AddFruitCount()
     {
         fruitCount++;
+        _UIManager.ChangeFruit(fruitCount);
     }
 }
