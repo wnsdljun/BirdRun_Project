@@ -1,27 +1,18 @@
 using System.Collections;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class GameUI : BaseUI
 {
-    //[SerializeField] private Text waveText;
-    //[SerializeField] private Slider hpSlider;
-    //[SerializeField] private Button pauseButton;
     [SerializeField] private Image hpBar;
     [SerializeField] private Text scoreText;
     [SerializeField] private Text fruitText;
     [SerializeField] private Text speedUpText;
 
-    private void Start()
-    {
-        //UpdateHPSlider(1);
-    }
 
     public override void Init(UIManager uiManager)
     {
         base.Init(uiManager);
-        //pauseButton.onClick.AddListener(OnClickPauseButton);
     }
 
     public void OnClickPauseButton()

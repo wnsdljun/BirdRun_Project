@@ -7,14 +7,6 @@ public partial class GameManager : MonoBehaviour
     public int totalScore = 0;
     public int fruitCount = 0;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        //SceneManager.LoadScene();
-        //SceneManager.LoadSceneAsync();
-    }
-
-    // Update is called once per frame
     void FixedUpdate()
     {
         if (player != null)

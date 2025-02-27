@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -105,10 +104,6 @@ public partial class GameManager : MonoBehaviour
     public void LoadScene(string sceneName)
     {
         //페이드 아웃 추가?
-
-        //로드씬 불러오기
-        //StartCoroutine(AwaitLoadScene(sceneName));
-        //로드씬도 완전히 로드 된 후 그다음 씬을 호출해줘야됨. 왜...?
 
         string str = sceneName.ToString();
         SceneManager.LoadSceneAsync("02 LoadScene");

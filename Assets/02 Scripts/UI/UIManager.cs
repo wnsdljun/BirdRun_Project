@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.SocialPlatforms.Impl;
 
 public enum UIState
 {
@@ -53,8 +52,6 @@ public class UIManager : MonoBehaviour
         startUI.Init(this);
         gameUI = GetComponentInChildren<GameUI>(true);
         gameUI.Init(this);
-        //pauseUI = GetComponentInChildren<PauseUI>(true);
-        //pauseUI.Init(this);
         endUI = GetComponentInChildren<EndUI>(true);
         endUI.Init(this);
 
@@ -114,7 +111,6 @@ public class UIManager : MonoBehaviour
         currentState = state;
         startUI.SetActive(currentState);
         gameUI.SetActive(currentState);
-        //pauseUI.SetActive(currentState);
         endUI.SetActive(currentState);
     }
 }
