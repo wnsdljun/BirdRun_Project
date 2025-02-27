@@ -31,7 +31,6 @@ public class UIManager : MonoBehaviour
 
     StartUI startUI;
     GameUI gameUI;
-    PauseUI pauseUI;
     EndUI endUI;
     private UIState currentState;
 
@@ -57,10 +56,12 @@ public class UIManager : MonoBehaviour
 
         ChangeState(UIState.Start);
     }
+
     public void SetStartGame()
     {
         ChangeState(UIState.Start);
     }
+
     public void SetPlayGame()
     {
         ChangeState(UIState.Game);
@@ -72,14 +73,11 @@ public class UIManager : MonoBehaviour
         ChangeState(UIState.End);
     }
 
-    public void SetPauseGame()
-    {
-        ChangeState(UIState.Pause);
-    }
     public void SetUIOff()
     {
         ChangeState(UIState.Empty);
     }
+
     public void ChangePlayerHp(float playerHP)
     {
         gameUI.UpdateHPBar(playerHP);

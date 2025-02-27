@@ -16,7 +16,7 @@ public class PauseUI : BaseUI
 
     public void OnClickKeepPlayButton()
     {
-        Time.timeScale = 0f;
+        Time.timeScale = 1f;
     }
 
     public void OnClickExitButton()
