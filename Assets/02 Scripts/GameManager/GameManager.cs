@@ -97,7 +97,7 @@ public partial class GameManager : MonoBehaviour
 
         _UIManager = FindAnyObjectByType<UIManager>();
         DontDestroyOnLoad(_UIManager.gameObject);
-
+        DontDestroyOnLoad(GameObject.Find("EventSystem"));
         
     }
 
