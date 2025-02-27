@@ -120,21 +120,24 @@ public partial class GameManager : MonoBehaviour
     }
     private IEnumerator LoadSceneCoroutine(string name)
     {
+        yield return null;
         float elapsed = 0f;
         float waitTime = 1.5f;
         
         if (SelectedCharater != null)
         {
-            SceneManager.LoadScene($"{SelectedCharater.name}Scene", LoadSceneMode.Additive);
+            SceneManager.LoadSceneAsync($"{SelectedCharater.name}Scene", LoadSceneMode.Additive);
+            yield return null;
         }
         else
         {
             Debug.Log("선택된 새가 없습니다!");
         }
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(name);
+        yield return null;
         asyncLoad.allowSceneActivation = false; //씬이 전부 로드되더라도 실행하지 않음.
         
-        while (elapsed <= waitTime && !isCutScenePlayDone)
+        while (!isCutScenePlayDone || elapsed <= waitTime)
         {
             elapsed += Time.deltaTime;
 
